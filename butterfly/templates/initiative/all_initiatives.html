@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <a class="w3-button w3-padding w3-btn w3-xlarge w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}" target="_blank">Add Initiative</a>
+    {% endif %}
+    {% for initiative in initiatives %}
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div class="w3-card-4 w3-round" style="width: 65%;margin-bottom: 40px">
+                <div class="w3-display-container w3-text-white">
+                    {% if initiative.image %}
+                    <img src="{{ initiative.image }}" alt="Lights" style="width:100%">
+                    {% else %}
+                    <img src="{% static 'images/pic_butterfly.png' %}" alt="Lights" style="width:100%; height: 500px">
+                    {% endif %}
+                    <div class="w3-xlarge w3-display-bottommiddle w3-padding w3-2017-navy-peony w3-round-large">{{ initiative.title|upper }}</div>
+                </div>
+                <div class="w3-text-indigo">
+                    <p class="w3-large" style="padding: 20px">{{ initiative.description|truncatechars:500}}</p>
+                </div>
+                <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=initiative.pk %}" target="_blank">More...</a>
+            </div>
+        </div>
+    {% endfor %}
+    {% if initiatives.has_other_pages %}
+      <div class="w3-center">
+        <div class="w3-bar w3-xlarge w3-text-indigo">
+        {% if initiatives.has_previous %}
+        <a href="?page={{ initiatives.previous_page_number }}" class="w3-bar-item w3-button">&laquo;</a>
+        {% endif %}
+        {% for i in initiatives.paginator.page_range %}
+            {% if initiatives.number == i %}
+            <a href="{{ i }}" class="w3-button">{{ i }}</a>
+            {% else %}
+            <a href="?page={{ i }}" class="w3-button">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if initiatives.has_next %}
+            <a href="?page={{ initiatives.next_page_number }}" class="w3-button">&raquo;</a>
+        {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <a class="w3-button w3-padding w3-btn w3-xlarge w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}" target="_blank">Add Story</a>
+    {% endif %}
+    {% for story in stories %}
+<div style="display: flex; align-items: center; justify-content: center;">
+<div class="w3-card-4 w3-round" style="width: 65%;margin-bottom: 40px">
+  <div class="w3-display-container w3-text-white">
+    <img src="{{ story.image }}" alt="Lights" style="width:100%">
+    <div class="w3-xlarge w3-display-bottommiddle w3-padding">{{ story.title|upper }}</div>
+  </div>
+  <div class="w3-text-indigo">
+      <p class="w3-large" style="padding: 20px">{{ story.description|truncatechars:500}}</p>
+  </div>
+  <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details story' pk=story.pk %}" target="_blank">More...</a>
+
+</div>
+        </div>
+    {% endfor %}
+    {% if stories.has_other_pages %}
+      <div class="w3-center">
+        <div class="w3-bar w3-xlarge w3-text-indigo">
+    {% if stories.has_previous %}
+      <a href="?page={{ stories.previous_page_number }}" class="w3-bar-item w3-button">&laquo;</a>
+    {% endif %}
+    {% for i in stories.paginator.page_range %}
+      {% if stories.number == i %}
+          <a href="{{ i }}" class="w3-button">{{ i }}</a>
+{#        <span class="active w3-button">{{ i }} <span class="sr-only">(current)</span></span>#}
+      {% else %}
+        <a href="?page={{ i }}" class="w3-button">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if stories.has_next %}
+      <a href="?page={{ stories.next_page_number }}" class="w3-button">&raquo;</a>
+    {% endif %}
+  </div>
+        </div>
+{% endif %}
+
+{% endblock %}

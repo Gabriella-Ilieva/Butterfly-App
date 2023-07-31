@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="w3-row-padding" id="Trainers">
+<div class="w3-row-padding" style="width: 1600px">
+    <h2 class="w3-text-grey">Filter what you are looking for</h2>
+    <div style="width: 380px; display: inline-block">
+        <form class="w3-container " action="/action_page.php">
+
+  <select class="w3-select w3-text-grey" name="option">
+    <option value="" disabled selected>Region</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</form>
+</div>
+      <div style="width: 380px; display: inline-block">
+        <form class="w3-container" action="/action_page.php">
+
+  <select class="w3-select w3-text-grey" name="option">
+    <option value="" disabled selected>Category</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</form>
+</div>
+    <div style="width: 380px; display: inline-block">
+        <form class="w3-container" action="/action_page.php">
+
+  <select class="w3-select w3-text-grey" name="option">
+    <option value="" disabled selected>From date:</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</form>
+</div>
+    <div style="width: 400px; display: inline-block">
+        <form class="w3-container" action="/action_page.php">
+
+  <select class="w3-select w3-text-grey" name="option">
+    <option value="" disabled selected>To date:</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</form>
+</div>
+      <p><button class="w3-btn w3-btn w3-round-xlarge w3-2017-navy-peony">Filter</button></p>
+</div>
+
+
+    <div class="w3-third w3-margin-bottom w3-display-container" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="{% static '/images/pngwing.com.png' %}" alt="Initiative image" style="width:100%; max-height: 70%">
+        <div class="w3-container">
+          <h3>Jane Cormick</h3>
+          <p class="w3-opacity">CEO & Founder</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. </p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">DETAILS</a></button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="{% static '/images/R.jpg' %}" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">DETAILS</a></button></p>
+        </div>
+      </div>
+    </div>
+
+          <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+
+          <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+
+          <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+
+          <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+
+          <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4 w3-center" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Kristen Arnheim</h3>
+          <p class="w3-opacity">Dog Walker & Trainer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-margin-bottom" style="width:33%">
+      <div class="w3-card-4" style="height: 600px">
+        <img src="https://images.unsplash.com/photo-1539440860461-f30442bf7ab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Wieger Stienstra" style="width:100%; max-height: 65%">
+        <div class="w3-container">
+          <h3>Ola Truntwistle</h3>
+          <p class="w3-opacity">Dog Trainer & Hairdresser</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

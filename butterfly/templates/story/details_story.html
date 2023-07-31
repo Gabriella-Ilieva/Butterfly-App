@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="display: flex; align-items: center; justify-content: center;">
+<div class="w3-card-4 w3-round" style="width: 65%;">
+  <div class="w3-display-container w3-text-white">
+    <img src="{{ story.image }}" alt="Lights" style="width:100%">
+    <div class="w3-xlarge w3-display-bottommiddle w3-padding w3-margin">{{ story.title|upper }}</div>
+  </div>
+  <div class="w3-text-indigo">
+      <p class="w3-large" style="padding: 20px">{{ story.description }}</p>
+  </div>
+    {% if request.user.pk == story.user.pk %}
+        <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'edit story' pk=story.pk %}" target="_blank" style="margin-left: 20px">Edit story</a>
+        <a class="w3-button w3-right w3-round w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'delete story' pk=story.pk %}" target="_blank" style="margin-right: 20px">Delete story</a>
+    {% endif %}
+</div>
+        </div>
+
+{% endblock %}
