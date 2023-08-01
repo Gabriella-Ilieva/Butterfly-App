@@ -2,11 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView
 
 from butterfly.initiatives.forms import CreateInitiativeForm, EditInitiativeForm
-from butterfly.initiatives.models import Initiative
+from butterfly.initiatives.models import Initiative, Participation
 
 
 def all_initiatives(request):
@@ -67,10 +67,41 @@ def edit_initiative(request, pk):
 
 def initiative_details(request, pk):
     initiative = Initiative.objects.get(pk=pk)
-
+    # initiatives_list = Initiative.objects.all()
+    #
+    # if request.user.is_authenticated:
+    #
+    #     for current_initiative in initiatives_list:
+    #         current_initiative.liked_by_user = current_initiative.participation_set \
+    #             .filter(user=request.user) \
+    #             .exists()
+    initiative.participated = False
+    if initiative.user == request.user:
+        initiative.participated = True
     context = {
         "initiative": initiative,
     }
 
     return render(request, 'initiative/details_initiative.html', context=context)
 
+
+@login_required
+def participate(request, pk):
+    initiative = Initiative.objects.get(pk=pk)
+
+    kwargs = {
+        'to_initiative': initiative,
+        'user': request.user
+    }
+
+    part_obj = Participation.objects \
+        .filter(**kwargs) \
+        .first()
+
+    if part_obj:
+        part_obj.delete()
+    else:
+        new_part_obj = Participation(**kwargs)
+        new_part_obj.save()
+
+    return redirect(request.META['HTTP_REFERER'] + f"{pk}")

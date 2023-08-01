@@ -20,35 +20,36 @@ body {font-family: "Source Sans Pro"}
 </style>
 </head>
 <body class="w3-light-white w3-margin">
-    <div class="w3-bar w3-sand w3-text-indigo">
-        <a class="w3-left w3-button w3-tag w3-sand w3-round w3-text-indigo" href="{% url 'index' %}">
+    <div class="w3-bar w3-sand w3-text-dark-grey">
+        <a class="w3-left w3-button w3-tag w3-sand w3-round" href="{% url 'index' %}">
             <img src="{% static '/images/pic_butterfly.png' %}" class="w3-bar-item w3-circle" style="width:85px; padding-right: 0" alt="image">
             <h3 class="w3-cursive w3-bar-item w3-center" style="padding-left: 10; padding-top: 30px"><b>BUTTERFLY</b></h3>
         </a>
         {% if request.user.is_authenticated %}
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-round" style="display:none;z-index:5;right:0; width: 20%; height: 97vh" id="rightMenu">
+        <div class="w3-sidebar w3-text-dark-grey w3-bar-block w3-card w3-animate-right w3-round w3-sand" style="display:none;z-index:5;right:0; width: 30%; height: 97vh" id="rightMenu">
             <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-            <div class="w3-card-4 w3-center" style="height: 30%; width: 100%">
+            <div class="w3-card-4 w3-display-container" style="height: 25%; width: 100%">
                 {% if request.user.profile_picture %}
-                <img src="{{ request.user.profile_picture }}" style="height: 100%; max-width: 100%">
+                <img src="{{ request.user.profile_picture }}" class="w3-display-middle" style="height: 80%; width: auto">
                 {% else %}
-                <img src="{% static 'images/pic_butterfly.png' %}" style="height: 100%; max-width: 100%">
+                <img src="{% static 'images/pic_butterfly.png' %}" class="w3-display-middle" style="height: 80%; width: auto">
                 {% endif %}
             </div>
-            <div class="w3-center">
+        <div class="w3-left w3-margin">
+            <div class="w3-large" style="padding-left: 20px">
                 {% if request.user.first_name and request.user.last_name %}
-                <p class="w3-xlarge" style="padding-left: 20px">Name: <b><i>{{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</i></b></p>
+                <p>Name: <b><i>{{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</i></b></p>
                 {% endif %}
-                <p class="w3-xlarge" style="padding-left: 20px">Username: <b><i>{{ request.user.username }}</i></b></p>
-                <p class="w3-xlarge" style="padding-left: 20px">E-mail: <b><i>{{ request.user.email }}</i></b></p>
+                <p>Username: <b><i>{{ request.user.username }}</i></b></p>
+                <p>E-mail: <b><i>{{ request.user.email }}</i></b></p>
+            </div><br>
+            <div>
+                <a href="{% url 'user initiatives' pk=user.pk %}" class="w3-bar-item w3-button w3-large"><b>MY INITIATIVES</b></a>
+                <a href="#" class="w3-bar-item w3-button w3-large"><b>PARTICIPATIONS</b></a>
+                <a href="{% url 'user stories' pk=user.pk %}" class="w3-bar-item w3-button w3-large"><b>MY STORIES</b></a>
             </div>
-
-            <div class="w3-center" style="margin-top: 30px">
-                <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>MY INITIATIVES</b></a>
-                <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>PARTICIPATIONS</b></a>
-                <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>MY STORIES</b></a>
-            </div>
-            <div class="w3-display-bottomleft">
+        </div>
+            <div class="w3-display-bottomright">
                 <a href="{% url 'profile edit' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px">
                     <b>EDIT PROFILE</b>
                 </a>

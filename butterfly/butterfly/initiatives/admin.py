@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Initiative
 
-# Register your models here.
+
+@admin.register(Initiative)
+class InitiativeAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'title',)

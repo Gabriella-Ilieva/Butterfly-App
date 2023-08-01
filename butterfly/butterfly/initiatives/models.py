@@ -165,3 +165,11 @@ class Initiative(models.Model):
         on_delete=models.DO_NOTHING,
     )
 
+
+class Participation(models.Model):
+    to_initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE)
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.DO_NOTHING,
+    )

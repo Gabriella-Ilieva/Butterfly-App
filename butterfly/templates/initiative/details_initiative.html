@@ -13,34 +13,41 @@
                  style="margin-top: 20px; width:auto; height: 350px">
             {% endif %}
         </div>
-        <div class="w3-container w3-center w3-text-indigo">
+        <div class="w3-container w3-center w3-text-dark-grey">
             <p class="w3-xlarge">{{ initiative.title|upper }}</p>
         </div>
         <div class="w3-container w3-left w3-text-grey w3-margin">
-            <p>Category: <span class="w3-large w3-text-indigo">{{ initiative.category|upper }}</span></p>
-            <p>Region: <span class="w3-large w3-text-indigo">{{ initiative.region|upper }}</span></p>
-            <p>Suitable for: <span class="w3-large w3-text-indigo">{{ initiative.suitable_for|upper }}</span></p>
+            <p>Category: <span class="w3-large w3-text-dark-grey">{{ initiative.category|upper }}</span></p>
+            <p>Region: <span class="w3-large w3-text-dark-grey">{{ initiative.region|upper }}</span></p>
+            <p>Suitable for: <span class="w3-large w3-text-dark-grey">{{ initiative.suitable_for|upper }}</span></p>
         </div>
         <div class="w3-container w3-right w3-text-grey w3-margin">
-            <p>From: <span class="w3-large w3-text-indigo">{{ initiative.from_date|upper }}</span></p>
-            <p>To: <span class="w3-large w3-text-indigo">{{ initiative.to_date|upper }}</span></p>
+            <p>From: <span class="w3-large w3-text-dark-grey">{{ initiative.from_date|upper }}</span></p>
+            <p>To: <span class="w3-large w3-text-dark-grey">{{ initiative.to_date|upper }}</span></p>
         </div>
-        <div class="w3-container w3-text-indigo">
+        <div class="w3-container w3-text-dark-grey">
             <p class="w3-text-grey w3-xlarge">What is the purpose?</p>
             <p class="w3-large" style="padding: 20px">{{ initiative.description }}</p>
         </div>
-        <div class="w3-container w3-text-indigo">
+        <div class="w3-container w3-text-dark-grey">
             <p class="w3-text-grey w3-xlarge">Why should I participate?</p>
             <p class="w3-large" style="padding: 20px">{{ initiative.participation_reason }}</p>
         </div>
-        <div class="w3-container w3-text-indigo">
+        <div class="w3-container w3-text-dark-grey">
             <p class="w3-text-grey w3-xlarge">Need I any special equipment?</p>
             <p class="w3-large" style="padding: 20px">{{ initiative.equipment }}</p>
         </div>
-        <div class="w3-container w3-text-indigo">
+        <div class="w3-container w3-text-dark-grey">
             <p class="w3-text-grey w3-xlarge">Need I any special skills?</p>
             <p class="w3-large" style="padding: 20px">{{ initiative.skills }}</p>
         </div>
+        {% if initiative.participated %}
+            <a class="w3-button w3-center w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
+               href="{% url 'participate' pk=initiative.pk %}" target="_blank" style="margin-left: 20px">Join</a>
+        {% else %}
+            <a class="w3-button w3-center w3-round w3-large w3-green w3-margin-bottom"
+               href="#" target="_blank" style="margin-left: 20px">Joined</a>
+        {% endif %}
         {% if request.user == initiative.user %}
             <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
                href="{% url 'edit initiative' pk=initiative.pk %}" target="_blank" style="margin-left: 20px">Edit initiative</a>

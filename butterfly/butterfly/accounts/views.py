@@ -9,6 +9,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 
 from butterfly.accounts.forms import RegisterUserForm, LogInForm, EditUserForm
+from butterfly.initiatives.models import Initiative
+from butterfly.stories.models import Story
 
 UserModel = get_user_model()
 
@@ -54,24 +56,24 @@ class LoginUserView(auth_views.LoginView):
     success_url = reverse_lazy('index')
 
 
-# class ProfileDetailsView(views.DetailView):
-#     template_name = 'profile/details_profile.html'
-#     model = UserModel
-#
-#     profile_image = static('images/pic_butterfly.png')
+def user_stories(request, pk):
+    stories = Story.objects.filter(user=pk)
 
-    # def get_profile_image(self):
-    #     if self.object.profile_picture is not None:
-    #         return self.object.profile_picture
-    #     return self.profile_image
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #
-    #     context['profile_image'] = self.get_profile_image()
-    #     # context['pets'] = self.request.user.pet_set.all()
-    #
-    #     return context
+    context = {
+        "stories": stories,
+    }
+
+    return render(request, 'profile/user_stories.html', context=context)
+
+
+def user_initiatives(request, pk):
+    initiatives = Initiative.objects.filter(user=pk)
+
+    context = {
+        "initiatives": initiatives,
+    }
+
+    return render(request, 'profile/user_initiatives.html', context=context)
 
 
 class LogoutUserView(auth_views.LogoutView):

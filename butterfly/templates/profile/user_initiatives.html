@@ -2,9 +2,7 @@
 {% load static %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
     <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}" target="_blank">Add Initiative</a>
-    {% endif %}
  <div class="w3-row-padding">
      {% for initiative in initiatives %}
      <div class="w3-col s12 m6 l4">
@@ -20,12 +18,12 @@
              <div class="w3-container w3-center w3-text-dark-grey">
                  <p class="w3-large" style="height: 50px">{{ initiative.title|upper }}</p>
              </div>
-            <div class="w3-container w3-left w3-text-grey w3-margin-left">
+            <div class="w3-container w3-left w3-text-grey w3-margin">
                 <p>Category: <span class="w3-text-dark-grey">{{ initiative.category|upper }}</span></p>
                 <p>Region: <span class="w3-text-dark-grey">{{ initiative.region|upper }}</span></p>
                 <p>Suitable for: <span class="w3-text-dark-grey">{{ initiative.suitable_for|upper }}</span></p>
             </div>
-            <div class="w3-container w3-right w3-text-grey w3-section">
+            <div class="w3-container w3-right w3-text-grey w3-margin">
                 <p>From: <span class="w3-text-dark-grey">{{ initiative.from_date|upper }}</span></p>
                 <p>To: <span class="w3-text-dark-grey">{{ initiative.to_date|upper }}</span></p>
             </div>
