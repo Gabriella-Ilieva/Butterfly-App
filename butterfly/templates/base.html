@@ -14,6 +14,7 @@
   html {
   scroll-behavior: smooth;
 }
+  .mySlides {display:none;}
 h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
 body {font-family: "Source Sans Pro"}
 </style>
@@ -24,37 +25,41 @@ body {font-family: "Source Sans Pro"}
             <img src="{% static '/images/pic_butterfly.png' %}" class="w3-bar-item w3-circle" style="width:85px; padding-right: 0" alt="image">
             <h3 class="w3-cursive w3-bar-item w3-center" style="padding-left: 10; padding-top: 30px"><b>BUTTERFLY</b></h3>
         </a>
-    {% if request.user.is_authenticated %}
-    <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-round" style="display:none;z-index:5;right:0; width: 20%; height: 97vh" id="rightMenu">
-      <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-      <div class="w3-card-4 w3-center" style="height: 30%; width: 100%">
-          {% if request.user.profile_picture %}
-          <img src="{{ request.user.profile_picture }}" style="height: 100%; max-width: 100%">
-          {% else %}
-          <img src="{% static 'images/pic_butterfly.png' %}" style="height: 100%; max-width: 100%">
-          {% endif %}
-      </div>
-      <div class="w3-center">
-          {% if request.user.first_name and request.user.last_name %}
-          <p class="w3-xlarge" style="padding-left: 20px">Name: <b><i>{{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</i></b></p>
-          {% endif %}
-          <p class="w3-xlarge" style="padding-left: 20px">Username: <b><i>{{ request.user.username }}</i></b></p>
-          <p class="w3-xlarge" style="padding-left: 20px">E-mail: <b><i>{{ request.user.email }}</i></b></p>
-      </div>
+        {% if request.user.is_authenticated %}
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-round" style="display:none;z-index:5;right:0; width: 20%; height: 97vh" id="rightMenu">
+            <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+            <div class="w3-card-4 w3-center" style="height: 30%; width: 100%">
+                {% if request.user.profile_picture %}
+                <img src="{{ request.user.profile_picture }}" style="height: 100%; max-width: 100%">
+                {% else %}
+                <img src="{% static 'images/pic_butterfly.png' %}" style="height: 100%; max-width: 100%">
+                {% endif %}
+            </div>
+            <div class="w3-center">
+                {% if request.user.first_name and request.user.last_name %}
+                <p class="w3-xlarge" style="padding-left: 20px">Name: <b><i>{{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</i></b></p>
+                {% endif %}
+                <p class="w3-xlarge" style="padding-left: 20px">Username: <b><i>{{ request.user.username }}</i></b></p>
+                <p class="w3-xlarge" style="padding-left: 20px">E-mail: <b><i>{{ request.user.email }}</i></b></p>
+            </div>
 
-      <div class="w3-center" style="margin-top: 30px">
-          <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>MY INITIATIVES</b></a>
-          <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>PARTICIPATIONS</b></a>
-          <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>MY STORIES</b></a>
-      </div>
-      <div class="w3-display-bottomleft">
-          <a href="{% url 'profile edit' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px"><b>EDIT PROFILE</b></a>
-          <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px; display: inline-block"><b>LOG OUT</b></a>
-          <a href="{% url 'profile delete' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px"><b>DELETE PROFILE</b></a>
-      </div>
-    </div>
+            <div class="w3-center" style="margin-top: 30px">
+                <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>MY INITIATIVES</b></a>
+                <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>PARTICIPATIONS</b></a>
+                <a href="#" class="w3-bar-item w3-button w3-large" style="padding: 20px"><b>MY STORIES</b></a>
+            </div>
+            <div class="w3-display-bottomleft">
+                <a href="{% url 'profile edit' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px">
+                    <b>EDIT PROFILE</b>
+                </a>
+                <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px; display: inline-block"><b>LOG OUT</b></a>
+                <a href="{% url 'profile delete' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px">
+                    <b>DELETE PROFILE</b>
+                </a>
+            </div>
+        </div>
 
-    <div>
+        <div>
         <button class="w3-button w3-large w3-right" onclick="openRightMenu()"
                 style="font-family: 'Source Sans Pro'; margin-top: 40px">
                 {% if request.user.first_name %}
@@ -63,44 +68,61 @@ body {font-family: "Source Sans Pro"}
                 <b><i>{{ request.user.username }}</i></b>
                 {% endif %}
         </button>
+        </div>
+        {% else %}
+        <a href="{% url 'register' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
+           style="margin-top: 40px"><b>REGISTER</b></a>
+        <a href="{% url 'login' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
+           style="margin-top: 40px"><b>LOG IN</b></a>
+        {% endif %}
+        <a href="{% url 'all stories' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
+           style="margin-top: 40px"><b>OUR STORIES</b></a>
+        <a href="{% url 'all initiatives' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
+           style="margin-top: 40px"><b>INITIATIVES</b></a>
     </div>
-    {% else %}
-    <a href="{% url 'register' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right" style="margin-top: 40px"><b>REGISTER</b></a>
-    <a href="{% url 'login' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right" style="margin-top: 40px"><b>LOG IN</b></a>
-    {% endif %}
-    <a href="{% url 'all stories' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right" style="margin-top: 40px"><b>OUR STORIES</b></a>
-    <a href="{% url 'all initiatives' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right" style="margin-top: 40px"><b>INITIATIVES</b></a>
-{#    <p class="w3-right w3-bar-item w3-button w3-medium">JUST SPRING YOUR WINGS</p>#}
-
-</div>
     <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
     <div class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
-        <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round ">
-{#            <div class="w3-panel w3-card-4 w3-center" style="width:50%">#}
-                <span style="font-size:70px">&#10077;</span><br>
-                <p style="margin-top:-60px; font-size: 30px">
-                    <i><b>You have been created with the ability to change the world. Every single choice you make… Every single action you take… matters. But remember, the converse is also true. Every choice you do not make… Every action you do not take… matters just as much.” </b></i>
+        <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round w3-large" style="height: 180px">
+            <div class="mySlides w3-container">
+                <p style="margin: 0">
+                    <span style="font-size:50px">&#10077;</span>
+                    <i><b>You have been created with the ability to change the world. Every single choice you make…
+                        Every single action you take… matters. But remember, the converse is also true.
+                        Every choice you do not make… Every action you do not take… matters just as much. </b></i>
                 </p>
-            <p class="w3-xlarge">
-                                <i><b>– Andy Andrews</b></i>
-            </p>
-
-</div>
+                <p class="w3-large">
+                    <i><b>– Andy Andrews</b></i>
+                </p>
+            </div>
+            <div class="mySlides w3-container">
+                <p style="margin: 0">
+                    <span style="font-size:50px">&#10077;</span>
+                    <i><b>I am a believer of butterfly effect. A small positive vibration can change
+                        the entire cosmos.</b></i>
+                </p>
+                <p class="w3-large">
+                    <i><b>– Amit Ray</b></i>
+                </p>
+            </div>
+            <div class="mySlides w3-container">
+                <p style="margin: 0">
+                    <span style="font-size:50px">&#10077;</span>
+                    <i><b>Be the change that you wish to see in the world.</b></i>
+                </p>
+                <p class="w3-large">
+                    <i><b>– Mahatma Gandhi</b></i>
+                </p>
+            </div>
         </div>
     </div>
-    <div class="w3-container" >
     {% block content %}
 
     {% endblock %}
 
-    </div>
-
-<!-- Footer. This section contains an ad for W3Schools Spaces. You can leave it to support us. -->
 <footer class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
 <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round">
-    <p class="w3-xlarge"><i><b>"Be the change that you wish to see in the world"</b></i></p>
-    <p class="w3-large"><i><b>- Mahatma Gandhi</b></i></p>
+    <p class="w3-xlarge"><i><b>Change one thing, Change everything!</b></i></p>
     <p style="text-align: right" class="w3-medium"> Made with love by Gabriella</p>
 </div>
 </footer>
@@ -113,6 +135,22 @@ function openRightMenu() {
 function closeRightMenu() {
   document.getElementById("rightMenu").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(carousel, 15000);
 }
 </script>
 </body>

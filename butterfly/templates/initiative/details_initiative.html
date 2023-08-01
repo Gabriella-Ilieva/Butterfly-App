@@ -2,20 +2,52 @@
 {% load static %}
 
 {% block content %}
-<div style="display: flex; align-items: center; justify-content: center;height: 800px">
-<div class="w3-card-4 w3-round" style="width: 65%;">
-  <div class="w3-display-container w3-text-white">
-    <img src="{{ initiative.image }}" alt="Lights" style="width:100%; height: 500px">
-    <div class="w3-xlarge w3-display-bottommiddle w3-padding w3-margin">{{ initiative.title|upper }}</div>
-  </div>
-  <div class="w3-text-indigo">
-      <p class="w3-large" style="padding: 20px">{{ initiative.description }}</p>
-  </div>
-    {% if request.user == initiative.user %}
-        <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'edit initiative' pk=initiative.pk %}" target="_blank" style="margin-left: 20px">Edit story</a>
-        <a class="w3-button w3-right w3-round w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'delete initiative' pk=initiative.pk %}" target="_blank" style="margin-right: 20px">Delete story</a>
-    {% endif %}
-</div>
+<div style="display: flex; align-items: center; justify-content: center;height: auto">
+    <div class="w3-card-4 w3-round" style="width: 65%;">
+        <div class="w3-container w3-center">
+            {% if initiative.image %}
+                <img src="{{ initiative.image }}" alt="Lights" class="w3-round"
+                 style="margin-top: 20px; width:auto; height: 350px">
+            {% else %}
+                <img src="{% static 'images/pic_butterfly.png' %}" alt="Lights" class="w3-round"
+                 style="margin-top: 20px; width:auto; height: 350px">
+            {% endif %}
         </div>
+        <div class="w3-container w3-center w3-text-indigo">
+            <p class="w3-xlarge">{{ initiative.title|upper }}</p>
+        </div>
+        <div class="w3-container w3-left w3-text-grey w3-margin">
+            <p>Category: <span class="w3-large w3-text-indigo">{{ initiative.category|upper }}</span></p>
+            <p>Region: <span class="w3-large w3-text-indigo">{{ initiative.region|upper }}</span></p>
+            <p>Suitable for: <span class="w3-large w3-text-indigo">{{ initiative.suitable_for|upper }}</span></p>
+        </div>
+        <div class="w3-container w3-right w3-text-grey w3-margin">
+            <p>From: <span class="w3-large w3-text-indigo">{{ initiative.from_date|upper }}</span></p>
+            <p>To: <span class="w3-large w3-text-indigo">{{ initiative.to_date|upper }}</span></p>
+        </div>
+        <div class="w3-container w3-text-indigo">
+            <p class="w3-text-grey w3-xlarge">What is the purpose?</p>
+            <p class="w3-large" style="padding: 20px">{{ initiative.description }}</p>
+        </div>
+        <div class="w3-container w3-text-indigo">
+            <p class="w3-text-grey w3-xlarge">Why should I participate?</p>
+            <p class="w3-large" style="padding: 20px">{{ initiative.participation_reason }}</p>
+        </div>
+        <div class="w3-container w3-text-indigo">
+            <p class="w3-text-grey w3-xlarge">Need I any special equipment?</p>
+            <p class="w3-large" style="padding: 20px">{{ initiative.equipment }}</p>
+        </div>
+        <div class="w3-container w3-text-indigo">
+            <p class="w3-text-grey w3-xlarge">Need I any special skills?</p>
+            <p class="w3-large" style="padding: 20px">{{ initiative.skills }}</p>
+        </div>
+        {% if request.user == initiative.user %}
+            <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
+               href="{% url 'edit initiative' pk=initiative.pk %}" target="_blank" style="margin-left: 20px">Edit initiative</a>
+            <a class="w3-button w3-right w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
+               href="{% url 'delete initiative' pk=initiative.pk %}" target="_blank" style="margin-right: 20px">Delete initiative</a>
+        {% endif %}
+    </div>
+</div>
 
 {% endblock %}

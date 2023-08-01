@@ -21,3 +21,4 @@ def form_field_styles(form_field, styles):
     default_styles = form_field.field.widget.attrs.get('style', '')
     form_field.field.widget.attrs['style'] = default_styles + ' ' + styles
     return form_field
+

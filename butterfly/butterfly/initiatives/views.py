@@ -11,7 +11,7 @@ from butterfly.initiatives.models import Initiative
 
 def all_initiatives(request):
     initiatives_list = Initiative.objects.all().order_by('date_of_publication')
-    paginator = Paginator(initiatives_list, per_page=10)
+    paginator = Paginator(initiatives_list, per_page=6)
     page_number = request.GET.get("page", 1)
     try:
         initiatives = paginator.page(page_number)

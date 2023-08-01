@@ -15,11 +15,16 @@
             {{ form.skills|placeholder:'Are special skills needed?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.suitable_for|placeholder:'Who is suitable for?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.region|placeholder:'In which region the initiative take place?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.from_date|placeholder:'When the initiative starts?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.to_date|placeholder:'When the initiative ends?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
+            <div class="w3-container w3-left" style="margin-top: 50px; padding: 0px">
+                <label class="w3-text-grey w3-xlarge w3-left">When the initiative starts?</label>
+                {{ form.from_date|form_field_class:'w3-left w3-light-grey w3-round w3-large'|form_field_styles:'width: 70%' }}
+            </div>
+            <div class="w3-container w3-left" style="margin-top: 50px; padding: 0px">
+                <label class="w3-text-grey w3-xlarge w3-left">When the initiative ends?</label>
+                {{ form.to_date|form_field_class:'w3-left w3-light-grey w3-round w3-large'|form_field_styles:'width: 70%; margin-bottom: 50px' }}
+            </div>
             {{ form.image|placeholder:'Show us the desired end (Image URL)'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
             <input type="hidden" value="{{ next }}" name="next"/>
-
             {% csrf_token %}
 
             <button type="submit" class="w3-padding w3-display-bottommiddle w3-btn w3-round-xlarge w3-2017-navy-peony w3-large" style="margin-bottom: 30px">Add Initiative</button>
