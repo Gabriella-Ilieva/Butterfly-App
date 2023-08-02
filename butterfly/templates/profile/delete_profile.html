@@ -8,7 +8,7 @@
     <h2 class="w3-text-dark-grey w3-monospace" style="margin-top: 40px"><b>Are you sure you want to delete your profile?</b></h2>
     <h6 style="margin-top: 50px" class="w3-text-grey">Please, have in mind that if you delete your profile, all your initiatives will be deleted too!</h6>
     <button type="submit" class="w3-padding w3-display-bottomright w3-btn w3-round-xlarge w3-2017-navy-peony" style="margin-bottom: 30px; margin-right: 20px">Yes</button>
-    <a class="w3-button w3-padding w3-display-bottomleft w3-btn w3-round-xlarge w3-2017-navy-peony" style="margin-bottom: 30px; margin-left: 20px" href="{{request.META.HTTP_REFERER|escape}}" target="_blank">Cancel</a> <!-- End footer -->
+    <a class="w3-button w3-padding w3-display-bottomleft w3-btn w3-round-xlarge w3-2017-navy-peony" style="margin-bottom: 30px; margin-left: 20px" href="{{request.META.HTTP_REFERER|escape}}">Cancel</a> <!-- End footer -->
     {% csrf_token %}
 </form>
         </div>

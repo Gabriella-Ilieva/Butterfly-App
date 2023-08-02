@@ -165,6 +165,10 @@ class Initiative(models.Model):
         on_delete=models.DO_NOTHING,
     )
 
+    @property
+    def view_count(self):
+        return Participation.objects.filter(to_initiative=self).count()
+
 
 class Participation(models.Model):
     to_initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE)
@@ -173,3 +177,17 @@ class Participation(models.Model):
         UserModel,
         on_delete=models.DO_NOTHING,
     )
+
+
+class Comment(models.Model):
+    comment_text = models.TextField(max_length=300, blank=False, null=False)
+    date_time_of_publication = models.DateTimeField(auto_now_add=True)
+    to_initiative = models.ForeignKey(Initiative, on_delete=models.CASCADE, )
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.DO_NOTHING,
+    )
+
+    class Meta:
+        ordering = ('-date_time_of_publication',)

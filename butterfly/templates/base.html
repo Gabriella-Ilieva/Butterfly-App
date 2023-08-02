@@ -23,10 +23,11 @@ body {font-family: "Source Sans Pro"}
     <div class="w3-bar w3-sand w3-text-dark-grey">
         <a class="w3-left w3-button w3-tag w3-sand w3-round" href="{% url 'index' %}">
             <img src="{% static '/images/pic_butterfly.png' %}" class="w3-bar-item w3-circle" style="width:85px; padding-right: 0" alt="image">
-            <h3 class="w3-cursive w3-bar-item w3-center" style="padding-left: 10; padding-top: 30px"><b>BUTTERFLY</b></h3>
+            <h3 class="w3-cursive w3-bar-item w3-center" style="padding-left: 10px; padding-top: 30px"><b>BUTTERFLY</b></h3>
         </a>
         {% if request.user.is_authenticated %}
-        <div class="w3-sidebar w3-text-dark-grey w3-bar-block w3-card w3-animate-right w3-round w3-sand" style="display:none;z-index:5;right:0; width: 30%; height: 97vh" id="rightMenu">
+        <div class="w3-sidebar w3-text-dark-grey w3-bar-block w3-card w3-animate-right w3-round w3-sand"
+             style="display:none;z-index:5;right:0; width: 30%; height: 97vh" id="rightMenu">
             <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
             <div class="w3-card-4 w3-display-container" style="height: 25%; width: 100%">
                 {% if request.user.profile_picture %}
@@ -44,9 +45,15 @@ body {font-family: "Source Sans Pro"}
                 <p>E-mail: <b><i>{{ request.user.email }}</i></b></p>
             </div><br>
             <div>
-                <a href="{% url 'user initiatives' pk=user.pk %}" class="w3-bar-item w3-button w3-large"><b>MY INITIATIVES</b></a>
-                <a href="#" class="w3-bar-item w3-button w3-large"><b>PARTICIPATIONS</b></a>
-                <a href="{% url 'user stories' pk=user.pk %}" class="w3-bar-item w3-button w3-large"><b>MY STORIES</b></a>
+                <a href="{% url 'user initiatives' %}" class="w3-bar-item w3-button w3-large">
+                    <b>MY INITIATIVES</b><span class="w3-badge w3-light-blue w3-text-dark-grey"
+                                               style="margin-left: 20px">{{ initiative_count }}</span></a>
+                <a href="{% url 'user participations' %}" class="w3-bar-item w3-button w3-large">
+                    <b>PARTICIPATIONS</b><span class="w3-badge w3-light-blue w3-text-dark-grey"
+                                               style="margin-left: 20px">{{ participation_count }}</span></a>
+                <a href="{% url 'user stories' %}" class="w3-bar-item w3-button w3-large">
+                    <b>MY STORIES</b><span class="w3-badge w3-light-blue w3-text-dark-grey"
+                                           style="margin-left: 20px">{{ story_count }}</span></a>
             </div>
         </div>
             <div class="w3-display-bottomright">
@@ -70,6 +77,7 @@ body {font-family: "Source Sans Pro"}
                 {% endif %}
         </button>
         </div>
+        <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
         {% else %}
         <a href="{% url 'register' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
            style="margin-top: 40px"><b>REGISTER</b></a>
@@ -81,7 +89,6 @@ body {font-family: "Source Sans Pro"}
         <a href="{% url 'all initiatives' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
            style="margin-top: 40px"><b>INITIATIVES</b></a>
     </div>
-    <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
     <div class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
         <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round w3-large" style="height: 180px">

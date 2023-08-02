@@ -11,7 +11,7 @@ from butterfly.initiatives.models import Initiative, Participation
 
 def all_initiatives(request):
     initiatives_list = Initiative.objects.all().order_by('date_of_publication')
-    paginator = Paginator(initiatives_list, per_page=6)
+    paginator = Paginator(initiatives_list, per_page=3)
     page_number = request.GET.get("page", 1)
     try:
         initiatives = paginator.page(page_number)
@@ -67,17 +67,11 @@ def edit_initiative(request, pk):
 
 def initiative_details(request, pk):
     initiative = Initiative.objects.get(pk=pk)
-    # initiatives_list = Initiative.objects.all()
-    #
-    # if request.user.is_authenticated:
-    #
-    #     for current_initiative in initiatives_list:
-    #         current_initiative.liked_by_user = current_initiative.participation_set \
-    #             .filter(user=request.user) \
-    #             .exists()
     initiative.participated = False
-    if initiative.user == request.user:
+    already_participated = Participation.objects.filter(user=request.user, to_initiative=initiative).count()
+    if already_participated > 0:
         initiative.participated = True
+
     context = {
         "initiative": initiative,
     }
@@ -87,21 +81,22 @@ def initiative_details(request, pk):
 
 @login_required
 def participate(request, pk):
-    initiative = Initiative.objects.get(pk=pk)
+    to_initiative = Initiative.objects.get(pk=pk)
+    new_like, created = Participation.objects.get_or_create(user=request.user, to_initiative=to_initiative)
+    if not created:
+        new_like.delete()
+    return redirect(request.META['HTTP_REFERER'])
 
-    kwargs = {
-        'to_initiative': initiative,
-        'user': request.user
-    }
 
-    part_obj = Participation.objects \
-        .filter(**kwargs) \
-        .first()
+@login_required
+def comment(request, initiative_id):
+    initiative = Initiative.objects.get(pk=initiative_id)
 
-    if part_obj:
-        part_obj.delete()
-    else:
-        new_part_obj = Participation(**kwargs)
-        new_part_obj.save()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment_instance = form.save(commit=False)
+            new_comment_instance.to_photo = initiative
+            new_comment_instance.save()
 
-    return redirect(request.META['HTTP_REFERER'] + f"{pk}")
+        return redirect(request.META['HTTP_REFERER'])

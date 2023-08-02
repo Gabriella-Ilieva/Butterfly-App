@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}" target="_blank">Add Initiative</a>
+    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}">Add Initiative</a>
  <div class="w3-row-padding">
      {% for initiative in initiatives %}
      <div class="w3-col s12 m6 l4">
@@ -30,7 +30,7 @@
              <div class="w3-container w3-text-dark-grey">
                  <p class="w3-large" style="height: 150px">{{ initiative.description|truncatechars:300}}</p>
              </div>
-             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=initiative.pk %}" target="_blank">More...</a>
+             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=initiative.pk %}">More...</a>
          </div>
      </div>
      {% endfor %}

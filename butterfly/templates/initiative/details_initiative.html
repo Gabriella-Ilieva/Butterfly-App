@@ -24,6 +24,7 @@
         <div class="w3-container w3-right w3-text-grey w3-margin">
             <p>From: <span class="w3-large w3-text-dark-grey">{{ initiative.from_date|upper }}</span></p>
             <p>To: <span class="w3-large w3-text-dark-grey">{{ initiative.to_date|upper }}</span></p>
+            <p>Participants: <span class="w3-large w3-text-dark-grey">{{ initiative.view_count|upper }}</span></p>
         </div>
         <div class="w3-container w3-text-dark-grey">
             <p class="w3-text-grey w3-xlarge">What is the purpose?</p>
@@ -41,18 +42,21 @@
             <p class="w3-text-grey w3-xlarge">Need I any special skills?</p>
             <p class="w3-large" style="padding: 20px">{{ initiative.skills }}</p>
         </div>
-        {% if initiative.participated %}
-            <a class="w3-button w3-center w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
-               href="{% url 'participate' pk=initiative.pk %}" target="_blank" style="margin-left: 20px">Join</a>
-        {% else %}
-            <a class="w3-button w3-center w3-round w3-large w3-green w3-margin-bottom"
-               href="#" target="_blank" style="margin-left: 20px">Joined</a>
-        {% endif %}
-        {% if request.user == initiative.user %}
-            <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
-               href="{% url 'edit initiative' pk=initiative.pk %}" target="_blank" style="margin-left: 20px">Edit initiative</a>
-            <a class="w3-button w3-right w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
-               href="{% url 'delete initiative' pk=initiative.pk %}" target="_blank" style="margin-right: 20px">Delete initiative</a>
+        {% if user.is_authenticated %}
+            {% if request.user == initiative.user %}
+                <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
+                   href="{% url 'edit initiative' pk=initiative.pk %}" style="margin-left: 20px">Edit initiative</a>
+                <a class="w3-button w3-right w3-round w3-large w3-2017-navy-peony w3-margin-bottom"
+                   href="{% url 'delete initiative' pk=initiative.pk %}" style="margin-right: 20px">Delete initiative</a>
+            {% else %}
+                <a href="{% url 'participate' pk=initiative.pk %}" style="margin-left: 20px">
+                        {% if not initiative.participated %}
+                        <button class="w3-button w3-center w3-round w3-large w3-2017-navy-peony w3-margin-bottom">Join</button>
+                        {% else %}
+                        <button class="w3-button w3-center w3-round w3-large w3-light-grey w3-text-dark-grey w3-border w3-margin-bottom">Joined</button>
+                        {% endif %}
+                </a>
+            {% endif %}
         {% endif %}
     </div>
 </div>

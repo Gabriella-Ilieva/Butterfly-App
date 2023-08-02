@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}">Add Initiative</a>
+ <div class="w3-row-padding">
+     {% for row in page_obj %}
+     <div class="w3-col s12 m6 l4">
+         <div class="w3-card-4 w3-round">
+             <div class="w3-container w3-center w3-padding">
+             {% if row.to_initiative.image %}
+                 <img src="{{ row.to_initiative.image }}" alt="Lights" style="height: 350px; max-width:100%" class="w3-round">
+             {% else %}
+                 <img src="{% static 'images/pic_butterfly.png' %}" alt="Lights" style="height: 350px; max-width:100%"
+                      class="w3-round">
+             {% endif %}
+             </div>
+             <div class="w3-container w3-center w3-text-dark-grey">
+                 <p class="w3-large" style="height: 50px">{{ row.to_initiative.title|upper }}</p>
+             </div>
+            <div class="w3-container w3-left w3-text-grey w3-margin">
+                <p>Category: <span class="w3-text-dark-grey">{{ row.to_initiative.category|upper }}</span></p>
+                <p>Region: <span class="w3-text-dark-grey">{{ row.to_initiative.region|upper }}</span></p>
+                <p>Suitable for: <span class="w3-text-dark-grey">{{ row.to_initiative.suitable_for|upper }}</span></p>
+            </div>
+            <div class="w3-container w3-right w3-text-grey w3-margin">
+                <p>From: <span class="w3-text-dark-grey">{{ row.to_initiative.from_date|upper }}</span></p>
+                <p>To: <span class="w3-text-dark-grey">{{ row.to_initiative.to_date|upper }}</span></p>
+            </div>
+             <div class="w3-container w3-text-dark-grey">
+                 <p class="w3-large" style="height: 150px">{{ row.to_initiative.description|truncatechars:300}}</p>
+             </div>
+             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=row.to_initiative.pk %}">More...</a>
+         </div>
+     </div>
+     {% endfor %}
+ </div>
+    {% if page_obj.has_other_pages %}
+      <div class="w3-center">
+        <div class="w3-bar w3-xlarge w3-text-dark-grey">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="w3-bar-item w3-button">&laquo;</a>
+        {% endif %}
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <a href="{{ i }}" class="w3-button">{{ i }}</a>
+            {% else %}
+            <a href="?page={{ i }}" class="w3-button">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="w3-button">&raquo;</a>
+        {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+{% endblock %}

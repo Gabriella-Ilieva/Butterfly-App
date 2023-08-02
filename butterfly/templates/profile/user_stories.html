@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}" target="_blank">Add Story</a>
+    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}">Add Story</a>
  <div class="w3-row-padding">
-     {% for story in stories %}
+     {% for story in user_stories %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round">
              <div class="w3-container w3-center w3-padding">
@@ -21,7 +21,7 @@
              <div class="w3-container w3-text-dark-grey">
                  <p class="w3-large" style="height: 150px">{{ story.description|truncatechars:250}}</p>
              </div>
-             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details story' pk=story.pk %}" target="_blank">More...</a>
+             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details story' pk=story.pk %}">More...</a>
          </div>
      </div>
      {% endfor %}
