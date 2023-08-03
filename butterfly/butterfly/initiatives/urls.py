@@ -1,7 +1,7 @@
 from django.urls import path
 
 from butterfly.initiatives.views import all_initiatives, CreateInitiativeView, initiative_details, edit_initiative, \
-    DeleteInitiativeView, participate, comment
+    DeleteInitiativeView, participate
 
 urlpatterns = [
     path('', all_initiatives, name='all initiatives'),
@@ -10,5 +10,4 @@ urlpatterns = [
     path('edit/<int:pk>/', edit_initiative, name='edit initiative'),
     path('delete/<int:pk>/', DeleteInitiativeView.as_view(), name='delete initiative'),
     path('participate/<int:pk>', participate, name="participate"),
-    path('comment/<int:pk>', comment, name="comment"),
 ]

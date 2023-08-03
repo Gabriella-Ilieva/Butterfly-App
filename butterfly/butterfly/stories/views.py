@@ -5,15 +5,21 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, CreateView, FormView, ListView, UpdateView, DeleteView
 
+from butterfly.main.forms import SearchForm
 from butterfly.stories.forms import StoryForm, EditStoryForm
 from butterfly.stories.models import Story
 
 
 def show_all_stories(request):
     all_stories = Story.objects.all().order_by('date_of_publication')
+    search_form = SearchForm()
+    if request.method == 'POST':
+        search_form = SearchForm(request.POST)
+        if search_form.is_valid():
+            all_stories = all_stories.filter(title__icontains=search_form.cleaned_data['title_filed'])
+
     paginator = Paginator(all_stories, per_page=7)
     page_number = request.GET.get("page", 1)
-    # page_obj = paginator.get_page(page_number)
     try:
         stories = paginator.page(page_number)
     except PageNotAnInteger:
@@ -22,6 +28,8 @@ def show_all_stories(request):
         stories = paginator.page(paginator.num_pages)
 
     context = {
+        "all_stories": all_stories,
+        "search_form": search_form,
         "stories": stories,
     }
 
@@ -55,8 +63,6 @@ def edit_story(request, pk):
         if form.is_valid():
             form.save()
             return redirect('details story', pk=pk)
-        else:
-            print(form.errors)
 
     context = {
         "story": story,

@@ -7,11 +7,18 @@ from django.views.generic import CreateView, DeleteView
 
 from butterfly.initiatives.forms import CreateInitiativeForm, EditInitiativeForm
 from butterfly.initiatives.models import Initiative, Participation
+from butterfly.main.forms import CommentForm, SearchForm
 
 
 def all_initiatives(request):
-    initiatives_list = Initiative.objects.all().order_by('date_of_publication')
-    paginator = Paginator(initiatives_list, per_page=3)
+    initiatives_list = Initiative.objects.all()
+    search_form = SearchForm()
+    if request.method == 'POST':
+        search_form = SearchForm(request.POST)
+        if search_form.is_valid():
+            initiatives_list = initiatives_list.filter(title__icontains=search_form.cleaned_data['title_filed'])
+
+    paginator = Paginator(initiatives_list, per_page=4)
     page_number = request.GET.get("page", 1)
     try:
         initiatives = paginator.page(page_number)
@@ -22,6 +29,8 @@ def all_initiatives(request):
 
     context = {
         "initiatives": initiatives,
+        "search_form": search_form,
+        "initiatives_list": initiatives_list,
     }
 
     return render(request, template_name='initiative/all_initiatives.html', context=context)
@@ -67,13 +76,19 @@ def edit_initiative(request, pk):
 
 def initiative_details(request, pk):
     initiative = Initiative.objects.get(pk=pk)
+    comment_form = CommentForm()
     initiative.participated = False
+    all_comments = initiative.comment_set.all()
+    comments_count = all_comments.count()
     already_participated = Participation.objects.filter(user=request.user, to_initiative=initiative).count()
     if already_participated > 0:
         initiative.participated = True
 
     context = {
         "initiative": initiative,
+        "all_comments": all_comments,
+        "comment_form": comment_form,
+        "comments_count": comments_count,
     }
 
     return render(request, 'initiative/details_initiative.html', context=context)
@@ -87,16 +102,3 @@ def participate(request, pk):
         new_like.delete()
     return redirect(request.META['HTTP_REFERER'])
 
-
-@login_required
-def comment(request, initiative_id):
-    initiative = Initiative.objects.get(pk=initiative_id)
-
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            new_comment_instance = form.save(commit=False)
-            new_comment_instance.to_photo = initiative
-            new_comment_instance.save()
-
-        return redirect(request.META['HTTP_REFERER'])

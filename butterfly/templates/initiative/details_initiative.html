@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load forms %}
 {% load static %}
 
 {% block content %}
@@ -58,7 +59,36 @@
                 </a>
             {% endif %}
         {% endif %}
+        <div class="w3-container w3-section w3-margin w3-text-dark-grey"  style="font-size: 16px">
+            <div class="w3-padding">
+                <h3>{{ comments_count }} comments</h3>
+                {% for comment in all_comments %}
+                    <div class="w3-panel w3-border-top w3-border-bottom" style="padding: 10px;">
+                        <p class="w3-text-grey">Published on:
+                            <span class="w3-text-dark-grey" style="font-size: 16px">
+                                {{ comment.date_time_of_publication }}
+                            </span>
+                        </p>
+                        <p class="w3-text-grey">By:
+                            <span class="w3-text-dark-grey" style="font-size: 16px">
+                                {{ comment.user|upper }}
+                            </span>
+                        </p>
+                        {{ comment.comment_text | linebreaks }}
+                    </div>
+                {% endfor %}
+                <div class="w3-container">
+                    <div class="w3-section">
+                    <h3>Leave a comment</h3>
+                    <form method="post" action="{% url 'comment' initiative_pk=initiative.pk %}">
+                        {{ comment_form.comment_text|form_field_class:'w3-input w3-sand w3-border w3-round '|form_field_styles:'margin-top: 20px' }}
+                        {% csrf_token %}
+                        <button type="submit" class="w3-button w3-right w3-round w3-2017-navy-peony w3-text-dark-grey w3-border w3-margin-top">Submit</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock %}

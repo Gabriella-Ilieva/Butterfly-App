@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
+{% load forms %}
 {% load static %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
+{% if request.user.is_authenticated %}
     <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}" target="_blank">Add Initiative</a>
-    {% endif %}
+{% endif %}
+
+<div class="w3-container" style="height: 80px">
+    <div class="w3-display-container w3-padding w3-margin">
+        <form method="post">
+            {{ search_form.title_filed|form_field_class:'w3-display-middle w3-input w3-sand w3-border w3-round'|form_field_styles:'width: 70%' }}
+            {% csrf_token %}
+            <button type="submit" class="w3-display-right w3-button w3-round w3-2017-navy-peony w3-text-dark-grey">Submit</button>
+        </form>
+    </div>
+</div>
  <div class="w3-row-padding">
      {% for initiative in initiatives %}
      <div class="w3-col s12 m6 l4">

@@ -1,9 +1,6 @@
-from profile import Profile
-
 from django.contrib.auth import views as auth_views, get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
-from django.templatetags.static import static
 from django.views import generic as views
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -45,7 +42,7 @@ class RegisterUserView(views.CreateView):
     #     context['next'] = self.request.GET.get('next', '')
     #
     #     return context
-
+    #
     # def get_success_url(self):
     #
     #     return self.request.POST.get('next', self.success_url)

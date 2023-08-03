@@ -1,6 +1,6 @@
 from django import forms
 
-from butterfly.initiatives.models import Initiative, Comment
+from butterfly.initiatives.models import Initiative
 
 
 class CreateInitiativeForm(forms.ModelForm):
@@ -119,14 +119,3 @@ class EditInitiativeForm(forms.ModelForm):
         model = Initiative
         exclude = ['date_of_publication', 'user']
 
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('comment_text',)
-        widgets = {
-            'comment_text': forms.Textarea(
-                attrs={
-                    'placeholder': 'Add comment...',
-                })
-        }
