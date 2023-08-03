@@ -44,3 +44,12 @@ class ButterflyUser(auth_model.AbstractUser):
         verbose_name="Profile picture"
     )
 
+    @property
+    def full_name(self):
+        if self.first_name or self.last_name:
+            return f'{self.first_name} {self.last_name}'
+        return self.username
+
+    def save(self, *args, **kwargs):
+        result = super().save(*args, **kwargs)
+        return result

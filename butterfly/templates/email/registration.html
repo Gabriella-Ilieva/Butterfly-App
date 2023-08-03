@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butterfly</title>
+</head>
+<body style="display: flex;justify-content: center;">
+<div style="display: flex;
+			justify-content: center;
+			margin: 2%;
+			max-width: 620px;">
+    <div>
+		<table>
+			<nav>
+                <img src="{% static '/images/pic_butterfly.png' %}"
+                     style="display: inline-block;
+                            width: 15%;
+                            margin-top: 10px;
+                            margin-left: -20px;
+                            height: auto;"
+                     alt="image">
+                <h2 style="display: inline-block;
+                            color: rgb(65, 63, 63);
+                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                            padding-left: 10px;
+                            padding-top: 30px; ">
+                    <b>BUTTERFLY</b></h2>
+            </nav>
+		</table>
+
+        <h1 style="text-align: center;
+                color: rgb(65, 63, 63);
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+
+            Hello, {{ user.username|upper }} !</h1>
+
+        <div style="display: flex;
+                justify-content: center;">
+            <img style="width: 70%;" id="cat-image"
+                 src="https://jdzejo.stripocdn.email/content/guids/CABINET_b71dddfca1f6a4c91ed66e0fc480ad7f/images/ezgifcomgifmaker.gif"
+                 alt="gif cat">
+        </div>
+
+        <p style="max-width: 620px;
+            padding: 20px 20px 0 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            Congratulations on creating your profile at Butterfly!
+        </p>
+        <p style="max-width: 620px;
+            padding: 20px 20px 0 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            We believe that even tiny changes can lead to <b>HUGE</b> differences.
+        </p>
+        <p style="max-width: 620px;
+            padding: 20px 20px 0 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            So, spread your wings and wave them in the right direction!
+        </p>
+        <p style="max-width: 620px;
+            padding: 20px 20px 0 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            Sincerely,
+            <br>
+            <img style="width: 10%;
+            margin-top: 10px;
+            margin-left: -4px;"
+                 src="{% static 'images/pic_butterfly.png' %}"
+                 alt="Logo">
+        </p>
+    </div>
+</div>
+</body>
+</html>
