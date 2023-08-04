@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView
 
+from butterfly.initiatives.filters import InitiativeFilter
 from butterfly.initiatives.forms import CreateInitiativeForm, EditInitiativeForm
 from butterfly.initiatives.models import Initiative, Participation
 from butterfly.main.forms import CommentForm, SearchForm
@@ -12,13 +13,15 @@ from butterfly.main.forms import CommentForm, SearchForm
 
 def all_initiatives(request):
     initiatives_list = Initiative.objects.all()
+    initiatives_list = InitiativeFilter(request.GET, queryset=initiatives_list)
     search_form = SearchForm()
+    paginator = Paginator(initiatives_list.qs, per_page=6)
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
-            initiatives_list = initiatives_list.filter(title__icontains=search_form.cleaned_data['title_filed'])
+            searched_list = initiatives_list.qs.filter(title__icontains=search_form.cleaned_data['title_filed'])
+            paginator = Paginator(searched_list, per_page=6)
 
-    paginator = Paginator(initiatives_list, per_page=4)
     page_number = request.GET.get("page", 1)
     try:
         initiatives = paginator.page(page_number)
@@ -76,13 +79,15 @@ def edit_initiative(request, pk):
 
 def initiative_details(request, pk):
     initiative = Initiative.objects.get(pk=pk)
-    comment_form = CommentForm()
-    initiative.participated = False
     all_comments = initiative.comment_set.all()
     comments_count = all_comments.count()
-    already_participated = Participation.objects.filter(user=request.user, to_initiative=initiative).count()
-    if already_participated > 0:
-        initiative.participated = True
+    comment_form = CommentForm()
+
+    if request.user.is_authenticated:
+        initiative.participated = False
+        already_participated = Participation.objects.filter(user=request.user, to_initiative=initiative).count()
+        if already_participated > 0:
+            initiative.participated = True
 
     context = {
         "initiative": initiative,

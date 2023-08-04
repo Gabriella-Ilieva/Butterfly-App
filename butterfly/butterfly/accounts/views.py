@@ -1,4 +1,5 @@
 from django.contrib.auth import views as auth_views, get_user_model, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.views import generic as views
@@ -54,6 +55,7 @@ class LoginUserView(auth_views.LoginView):
     success_url = reverse_lazy('index')
 
 
+@login_required
 def user_stories(request):
     all_stories = Story.objects.filter(user=request.user).order_by('date_of_publication')
     paginator = Paginator(all_stories, per_page=9)
@@ -71,6 +73,7 @@ def user_stories(request):
     return render(request, 'profile/user_stories.html', context)
 
 
+@login_required
 def user_initiatives(request):
     initiatives_list = Initiative.objects.filter(user=request.user).order_by('date_of_publication')
     paginator = Paginator(initiatives_list, per_page=9)
@@ -88,6 +91,7 @@ def user_initiatives(request):
     return render(request, 'profile/user_initiatives.html', context)
 
 
+@login_required
 def user_participations(request):
     participations_list = Participation.objects.filter(user=request.user).order_by('to_initiative__date_of_publication')
 
@@ -106,7 +110,7 @@ def user_participations(request):
     return render(request, 'profile/user_participations.html', context)
 
 
-class LogoutUserView(auth_views.LogoutView):
+class LogoutUserView(LoginRequiredMixin, auth_views.LogoutView):
     success_url = reverse_lazy('index')
 
 
@@ -117,7 +121,7 @@ class ProfileEditView(LoginRequiredMixin, views.UpdateView):
     success_url = reverse_lazy('index')
 
 
-class ProfileDeleteView(views.DeleteView):
+class ProfileDeleteView(LoginRequiredMixin, views.DeleteView):
     model = UserModel
     template_name = 'profile/delete_profile.html'
     success_url = reverse_lazy('index')

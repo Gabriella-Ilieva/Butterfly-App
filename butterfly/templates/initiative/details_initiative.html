@@ -15,7 +15,14 @@
             {% endif %}
         </div>
         <div class="w3-container w3-center w3-text-dark-grey">
-            <p class="w3-xlarge">{{ initiative.title|upper }}</p>
+             <p class="w3-large" style="height: 50px">
+                 {% if initiative.is_expired %}
+                 <span class="w3-tag w3-round w3-red w3-margin-right">Expired</span>
+                 {% else %}
+                 <span class="w3-tag w3-round w3-green w3-margin-right">Active</span>
+                 {% endif %}
+                 {{ initiative.title|upper }}
+             </p>
         </div>
         <div class="w3-container w3-left w3-text-grey w3-margin">
             <p>Category: <span class="w3-large w3-text-dark-grey">{{ initiative.category|upper }}</span></p>
@@ -77,6 +84,7 @@
                         {{ comment.comment_text | linebreaks }}
                     </div>
                 {% endfor %}
+                {% if user.is_authenticated %}
                 <div class="w3-container">
                     <div class="w3-section">
                     <h3>Leave a comment</h3>
@@ -87,6 +95,7 @@
                     </form>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

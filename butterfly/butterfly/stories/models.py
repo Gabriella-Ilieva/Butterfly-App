@@ -15,7 +15,10 @@ class Story(models.Model):
         null=False,
         blank=False,
     )
-    image = models.URLField()
+    image = models.URLField(
+        null=True,
+        blank=True,
+    )
     date_of_publication = models.DateField(auto_now=True)
     user = models.ForeignKey(
         UserModel,

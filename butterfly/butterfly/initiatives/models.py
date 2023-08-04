@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -171,6 +173,10 @@ class Initiative(models.Model):
     @property
     def view_count(self):
         return Participation.objects.filter(to_initiative=self).count()
+
+    @property
+    def is_expired(self):
+        return self.to_date < date.today()
 
 
 class Participation(models.Model):

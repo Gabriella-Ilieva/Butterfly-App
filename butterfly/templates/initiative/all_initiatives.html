@@ -4,15 +4,60 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
-    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}" target="_blank">Add Initiative</a>
+    <div style="display: flex; justify-content: center">
+    <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" style="width: 95%" href="{% url 'add initiative' %}">ADD NEW INITIATIVE</a>
+    </div>
 {% endif %}
 
-<div class="w3-container" style="height: 80px">
-    <div class="w3-display-container w3-padding w3-margin">
+<div class="w3-container">
+    <div class="w3-text-dark-grey w3-display-topmiddle w3-animate-top w3-round-large w3-sand"
+                 style="display:none;z-index:5;width: 80%; height: auto" id="filterMenu">
+        <button onclick="closeFilterMenu()" class="w3-button w3-large w3-right w3-margin w3-round">Close &times;</button>
+        <div class="w3-container w3-text-dark-grey">
+            <h3 class="w3-top w3-center"><b>FILTERS</b></h3>
+            <form method="get" class="w3-container">
+                <div class="w3-container w3-margin w3-large" style="display: inline-block">
+                    <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Category: </label>
+                    <p>{{ initiatives_list.form.category }}</p>
+                </div>
+                <div class="w3-container w3-margin w3-large" style="display: inline-block">
+                    <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Suitable for:</label>
+                    <p>{{ initiatives_list.form.suitable_for }}</p>
+                </div>
+                <div class="w3-container w3-margin w3-large" style="display: inline-block">
+                    <p>
+                        <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Start date:</label>
+                        <span class="w3-margin">{{ initiatives_list.form.from_date }}</span>
+                    </p>
+                    <p>
+                    <label class="w3-text-grey w3-large" style="margin-bottom: 30px">End date:</label>
+                    <span class="w3-margin">{{ initiatives_list.form.to_date }}</span>
+                    </p>
+                    <p>
+                       <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Region:</label>
+                       <span class="w3-margin">{{ initiatives_list.form.region }}</span>
+                    </p>
+                </div>
+                <input type="submit" value="Filter" class="w3-button w3-padding w3-btn w3-round-large w3-2017-navy-peony">
+            </form>
+        </div>
+    </div>
+    <div class="w3-padding">
+         <button class="w3-left w3-button w3-padding w3-btn w3-round w3-blue"
+                 onclick="openFilterMenu()">FILTERS</button>
+        <a href="{% url 'all initiatives' %}"
+           class="w3-button w3-right w3-btn w3-round w3-border w3-border-grey"
+           >Clear filter</a>
+    </div>
+    <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+</div>
+
+<div class="w3-container" style="height: 80px; margin-top: 80px; margin-right: 170px">
+    <div class="w3-display-container">
         <form method="post">
             {{ search_form.title_filed|form_field_class:'w3-display-middle w3-input w3-sand w3-border w3-round'|form_field_styles:'width: 70%' }}
             {% csrf_token %}
-            <button type="submit" class="w3-display-right w3-button w3-round w3-2017-navy-peony w3-text-dark-grey">Submit</button>
+            <button type="submit" class="w3-display-right w3-button w3-btn w3-round w3-2017-navy-peony">SUBMIT</button>
         </form>
     </div>
 </div>
@@ -29,16 +74,24 @@
              {% endif %}
              </div>
              <div class="w3-container w3-center w3-text-dark-grey">
-                 <p class="w3-large" style="height: 50px">{{ initiative.title|upper }}</p>
+                 <p class="w3-large" style="height: 50px">
+                     {% if initiative.is_expired %}
+                     <span class="w3-tag w3-round w3-red w3-margin-right">Expired</span>
+                     {% else %}
+                     <span class="w3-tag w3-round w3-green w3-margin-right">Active</span>
+                     {% endif %}
+                     {{ initiative.title|upper }}
+                 </p>
              </div>
             <div class="w3-container w3-left w3-text-grey w3-margin-left">
                 <p>Category: <span class="w3-text-dark-grey">{{ initiative.category|upper }}</span></p>
                 <p>Region: <span class="w3-text-dark-grey">{{ initiative.region|upper }}</span></p>
                 <p>Suitable for: <span class="w3-text-dark-grey">{{ initiative.suitable_for|upper }}</span></p>
             </div>
-            <div class="w3-container w3-right w3-text-grey w3-section">
+            <div class="w3-container w3-right w3-text-grey">
                 <p>From: <span class="w3-text-dark-grey">{{ initiative.from_date|upper }}</span></p>
                 <p>To: <span class="w3-text-dark-grey">{{ initiative.to_date|upper }}</span></p>
+                <p>Participants: <span class="w3-text-dark-grey">{{ initiative.view_count|upper }}</span></p>
             </div>
              <div class="w3-container w3-text-dark-grey">
                  <p class="w3-large" style="height: 150px">{{ initiative.description|truncatechars:300}}</p>

@@ -20,7 +20,7 @@ body {font-family: "Source Sans Pro"}
 </style>
 </head>
 <body class="w3-light-white w3-margin">
-    <div class="w3-bar w3-sand w3-text-dark-grey">
+    <div class="w3-bar w3-sand w3-text-dark-grey w3-padding">
         <a class="w3-left w3-button w3-tag w3-sand w3-round" href="{% url 'index' %}">
             <img src="{% static '/images/pic_butterfly.png' %}" class="w3-bar-item w3-circle" style="width:85px; padding-right: 0" alt="image">
             <h3 class="w3-cursive w3-bar-item w3-center" style="padding-left: 10px; padding-top: 30px"><b>BUTTERFLY</b></h3>
@@ -37,7 +37,7 @@ body {font-family: "Source Sans Pro"}
                 {% endif %}
             </div>
         <div class="w3-left w3-margin">
-            <div class="w3-large" style="padding-left: 20px">
+            <div class="w3-large">
                 {% if request.user.first_name and request.user.last_name %}
                 <p>Name: <b><i>{{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</i></b></p>
                 {% endif %}
@@ -90,7 +90,7 @@ body {font-family: "Source Sans Pro"}
            style="margin-top: 40px"><b>INITIATIVES</b></a>
     </div>
 
-    <div class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
+    <div class="w3-container w3-center w3-padding-large">
         <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round w3-large" style="height: 180px">
             <div class="mySlides w3-container">
                 <p style="margin: 0">
@@ -134,6 +134,17 @@ body {font-family: "Source Sans Pro"}
     <p style="text-align: right" class="w3-medium"> Made with love by Gabriella</p>
 </div>
 </footer>
+<script>
+function openFilterMenu() {
+  document.getElementById("filterMenu").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function closeFilterMenu() {
+  document.getElementById("filterMenu").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
 <script>
 function openRightMenu() {
   document.getElementById("rightMenu").style.display = "block";
