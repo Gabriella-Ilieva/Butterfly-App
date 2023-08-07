@@ -3,14 +3,15 @@
 {% load static %}
 
 {% block content %}
+    <h1 class="w3-text-dark-grey w3-center"><b>get INVOLVED and CHANGE the FEATURE</b></h1>
 {% if request.user.is_authenticated %}
     <div style="display: flex; justify-content: center">
-    <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" style="width: 95%" href="{% url 'add initiative' %}">ADD NEW INITIATIVE</a>
+    <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" style="width: 96%" href="{% url 'add initiative' %}"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW INITIATIVE</a>
     </div>
 {% endif %}
 
-<div class="w3-container">
-    <div class="w3-text-dark-grey w3-display-topmiddle w3-animate-top w3-round-large w3-sand"
+<div class="w3-container w3-margin">
+    <div class="w3-text-dark-grey w3-display-topmiddle w3-animate-zoom w3-round-large w3-sand"
                  style="display:none;z-index:5;width: 80%; height: auto" id="filterMenu">
         <button onclick="closeFilterMenu()" class="w3-button w3-large w3-right w3-margin w3-round">Close &times;</button>
         <div class="w3-container w3-text-dark-grey">
@@ -43,25 +44,25 @@
         </div>
     </div>
     <div class="w3-padding">
-         <button class="w3-left w3-button w3-padding w3-btn w3-round w3-blue"
-                 onclick="openFilterMenu()">FILTERS</button>
+         <button class="w3-left w3-button w3-padding w3-btn w3-round w3-2017-navy-peony"
+                 onclick="openFilterMenu()"><i class="fa fa-filter" aria-hidden="true"></i> FILTERS</button>
         <a href="{% url 'all initiatives' %}"
            class="w3-button w3-right w3-btn w3-round w3-border w3-border-grey"
-           >Clear filter</a>
+           ><i class="fa fa-times" aria-hidden="true"></i> CLEAR FILTERS</a>
     </div>
     <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 </div>
 
-<div class="w3-container" style="height: 80px; margin-top: 80px; margin-right: 170px">
-    <div class="w3-display-container">
+<div class="w3-display-container" style="height: 80px; margin-top: 80px;">
+    <div class="w3-display-middle" style="width: 70%">
         <form method="post">
-            {{ search_form.title_filed|form_field_class:'w3-display-middle w3-input w3-sand w3-border w3-round'|form_field_styles:'width: 70%' }}
+            {{ search_form.title_filed|form_field_class:'w3-input w3-sand w3-border w3-round'|form_field_styles:'width: 90%' }}
             {% csrf_token %}
             <button type="submit" class="w3-display-right w3-button w3-btn w3-round w3-2017-navy-peony">SUBMIT</button>
         </form>
     </div>
 </div>
- <div class="w3-row-padding">
+ <div class="w3-row-padding w3-margin">
      {% for initiative in initiatives %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round">
@@ -96,7 +97,7 @@
              <div class="w3-container w3-text-dark-grey">
                  <p class="w3-large" style="height: 150px">{{ initiative.description|truncatechars:300}}</p>
              </div>
-             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=initiative.pk %}">More...</a>
+             <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=initiative.pk %}"><b>More . . .</b></a>
          </div>
      </div>
      {% endfor %}

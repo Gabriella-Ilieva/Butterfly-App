@@ -3,7 +3,7 @@
 
 {% block content %}
     <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}">Add Story</a>
- <div class="w3-row-padding">
+ <div class="w3-row-padding w3-margin">
      {% for story in user_stories %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round">

@@ -25,15 +25,15 @@ class Initiative(models.Model):
     ANIMALS = 'Animals'
     ENVIRONMENT = 'Environment'
     HEALTHCARE = 'Healthcare'
-    SOCIAL = 'Social'
     SOCIETY = 'Society'
+    OTHER = 'Other'
 
     CATEGORIES = (
         (ANIMALS, ANIMALS),
         (ENVIRONMENT, ENVIRONMENT),
         (HEALTHCARE, HEALTHCARE),
-        (SOCIAL, SOCIAL),
         (SOCIETY, SOCIETY),
+        (OTHER, OTHER),
     )
 
 

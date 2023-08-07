@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+    <h1 class="w3-text-dark-grey w3-center"><b>get INSPIRED with our STORIES</b></h1>
 {% if request.user.is_authenticated %}
     <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}" target="_blank">Add Story</a>
 {% endif %}
@@ -15,7 +16,7 @@
         </form>
     </div>
 </div>
- <div class="w3-row-padding">
+ <div class="w3-row-padding w3-margin">
      {% for story in all_stories %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round w3-text-dark-grey">
@@ -23,7 +24,8 @@
              {% if story.image %}
                  <img src="{{ story.image }}" alt="Lights" style="height: 350px; max-width:100%" class="w3-round">
              {% else %}
-                 <img src="https://wp-media.beliefnet.com/sites/370/2020/09/butterfly-effect-beliefnet.jpg" alt="Lights" style="height: 350px; max-width:100%"
+                 <img src="https://wp-media.beliefnet.com/sites/370/2020/09/butterfly-effect-beliefnet.jpg" alt="Lights"
+                      style="height: 350px; max-width:100%"
                       class="w3-round">
              {% endif %}
              </div>

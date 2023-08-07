@@ -10,16 +10,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SourceSansPro">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
 <style>
-  html {
-  scroll-behavior: smooth;
+html {
+    scroll-behavior: smooth;
 }
-  .mySlides {display:none;}
+.quoteSlides {display:none;}
+.mySlides {display:none;}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
 h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
 body {font-family: "Source Sans Pro"}
 </style>
 </head>
-<body class="w3-light-white w3-margin">
+<body class="w3-light-white">
     <div class="w3-bar w3-sand w3-text-dark-grey w3-padding">
         <a class="w3-left w3-button w3-tag w3-sand w3-round" href="{% url 'index' %}">
             <img src="{% static '/images/pic_butterfly.png' %}" class="w3-bar-item w3-circle" style="width:85px; padding-right: 0" alt="image">
@@ -92,7 +96,7 @@ body {font-family: "Source Sans Pro"}
 
     <div class="w3-container w3-center w3-padding-large">
         <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round w3-large" style="height: 180px">
-            <div class="mySlides w3-container">
+            <div class="quoteSlides w3-container">
                 <p style="margin: 0">
                     <span style="font-size:50px">&#10077;</span>
                     <i><b>You have been created with the ability to change the world. Every single choice you make…
@@ -103,7 +107,7 @@ body {font-family: "Source Sans Pro"}
                     <i><b>– Andy Andrews</b></i>
                 </p>
             </div>
-            <div class="mySlides w3-container">
+            <div class="quoteSlides w3-container">
                 <p style="margin: 0">
                     <span style="font-size:50px">&#10077;</span>
                     <i><b>I am a believer of butterfly effect. A small positive vibration can change
@@ -113,7 +117,7 @@ body {font-family: "Source Sans Pro"}
                     <i><b>– Amit Ray</b></i>
                 </p>
             </div>
-            <div class="mySlides w3-container">
+            <div class="quoteSlides w3-container">
                 <p style="margin: 0">
                     <span style="font-size:50px">&#10077;</span>
                     <i><b>Be the change that you wish to see in the world.</b></i>
@@ -131,7 +135,8 @@ body {font-family: "Source Sans Pro"}
 <footer class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
 <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round">
     <p class="w3-xlarge"><i><b>Change one thing, Change everything!</b></i></p>
-    <p style="text-align: right" class="w3-medium"> Made with love by Gabriella</p>
+    <p style="text-align: right" class="w3-medium"><i class="fa fa-heart" aria-hidden="true"></i> Made with love by GabY
+        <i class="fa fa-heart-o" aria-hidden="true"></i></p>
 </div>
 </footer>
 <script>
@@ -162,7 +167,7 @@ carousel();
 
 function carousel() {
   var i;
-  var x = document.getElementsByClassName("mySlides");
+  var x = document.getElementsByClassName("quoteSlides");
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
@@ -170,6 +175,34 @@ function carousel() {
   if (slideIndex > x.length) {slideIndex = 1}
   x[slideIndex-1].style.display = "block";
   setTimeout(carousel, 15000);
+}
+</script>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
 }
 </script>
 </body>

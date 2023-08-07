@@ -2,162 +2,158 @@
 {% load static %}
 
 {% block content %}
-    <div class="w3-row-padding">
-        <div class="w3-row-padding" style="width: 1600px">
-            <h2 class="w3-text-grey">Filter what you are looking for</h2>
-            <div style="width: 380px; display: inline-block">
-                <form class="w3-container " action="/action_page.php">
-                  <select class="w3-select w3-text-grey" name="option">
-                    <option value="" disabled selected>Region</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                </form>
+<div class="w3-row w3-padding-large w3-white w3-section">
+    <div class="w3-container w3-center w3-text-dark-grey " style="display: flex; justify-content: center">
+        <p style="width: 80%; font-size: 22px"><b>Whether you’re the type of person who craves a lot of social interaction or whether you prefer as
+            little as possible, volunteering has social, career and personal benefits. Here are the top 10:</b></p>
+    </div>
+    <div class="w3-col m3 l5">
+        <img src="https://th.bing.com/th/id/R.563cf799cbd8e31febe2dcbd2f06bf17?rik=F5npS5rgfJ5qXw&riu=http%3a%2f%2fwww.booksaregems.org%2fuploads%2f3%2f0%2f4%2f7%2f30473660%2fvolunteer-words-orig_1.gif&ehk=nmCnJ%2f8mDXgZWAzN5YAvF%2btRHTjkmO6%2fx%2bSAp8ClKvc%3d&risl=&pid=ImgRaw&r=0"  style="width: 100%">
+    </div>
+    <div class="w3-col m9 l7 w3-padding w3-center" style="font-size: 18px">
+        <p class="w3-text-cyan"><i class="fa fa-check" aria-hidden="true"></i> Provides you with a sense of purpose</p>
+        <p class="w3-text-lime"><i class="fa fa-check" aria-hidden="true"></i> Provides a sense of community</p>
+        <p class="w3-text-deep-purple"><i class="fa fa-check" aria-hidden="true"></i> Helps you meet new friends</p>
+        <p class="w3-text-green"><i class="fa fa-check" aria-hidden="true"></i> Improves self-esteem and self-confidence</p>
+        <p class="w3-text-dark-grey"><i class="fa fa-check" aria-hidden="true"></i> Teaches you valuable skills</p>
+        <p class="w3-text-cyan"><i class="fa fa-check" aria-hidden="true"></i> Brings fun into your life</p>
+        <p class="w3-text-deep-purple"><i class="fa fa-check" aria-hidden="true"></i> Can help you be happier</p>
+        <p class="w3-text-green"><i class="fa fa-check" aria-hidden="true"></i> Gets you out of your comfort zone</p>
+        <p class="w3-text-dark-grey"><i class="fa fa-check" aria-hidden="true"></i> Improves your mental health</p>
+    </div>
+</div>
+
+<div class="w3-container w3-section">
+    <div class="w3-container w3-center w3-text-dark-grey " style="display: flex; justify-content: center">
+        <p style="width: 80%; font-size: 22px">
+            <b>If you are already inspired, choose an initiative from one of the categories . . .</b>
+        </p>
+    </div>
+    <div class="w3-content w3-display-container w3-section" style="width:90%;">
+        <a href="{% url 'all initiatives'%}?category=Animals&from_date=&to_date=&region= ">
+            <div class="w3-display-container mySlides" >
+                <img class="w3-opacity-min w3-hover-opacity-off" src="{% static 'images/bees.png' %}" alt="Animals"
+                     style="width:100%">
+            <div class="w3-display-topmiddle w3-container w3-padding-16 w3-text-dark-grey"
+                 style="font-size: 32px"><b>ANIMALS</b>
             </div>
-            <div style="width: 380px; display: inline-block">
-                <form class="w3-container" action="/action_page.php">
-                  <select class="w3-select w3-text-grey" name="option">
-                    <option value="" disabled selected>Category</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                </form>
             </div>
-    <div style="width: 380px; display: inline-block">
-        <form class="w3-container" action="/action_page.php">
-
-  <select class="w3-select w3-text-grey" name="option">
-    <option value="" disabled selected>From date:</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-</form>
+        </a>
+        <a href="{% url 'all initiatives'%}?category=Environment&from_date=&to_date=&region= ">
+            <div class="w3-display-container mySlides" >
+                <img class="w3-opacity-min w3-hover-opacity-off" src="{% static 'images/envirenment.png' %}"
+                     alt="Environment" style="width:100%">
+            <div class="w3-display-topleft w3-container w3-padding-16 w3-text-dark-grey"
+                 style="font-size: 32px"><b>ENVIRONMENT</b>
+            </div>
+            </div>
+        </a>
+        <a href="{% url 'all initiatives'%}?category=Healthcare&from_date=&to_date=&region= ">
+            <div class="w3-display-container mySlides" >
+                <img class="w3-opacity-min w3-hover-opacity-off" src="{% static 'images/healthcare.png' %}"
+                     alt="Healthcare" style="width:100%">
+            <div class="w3-display-topright w3-container w3-padding-16 w3-text-dark-grey"
+                 style="font-size: 32px"><b>HEALTHCARE</b>
+            </div>
+            </div>
+        </a>
+        <a href="{% url 'all initiatives'%}?category=Society&from_date=&to_date=&region= ">
+            <div class="w3-display-container mySlides" >
+                <img class="w3-opacity-min w3-hover-opacity-off" src="{% static 'images/society.png' %}"
+                     alt="Society" style="width:100%">
+            <div class="w3-display-topmiddle w3-container w3-padding-16 w3-text-dark-grey"
+                 style="font-size: 32px"><b>SOCIETY</b>
+            </div>
+            </div>
+        </a>
+        <a href="{% url 'all initiatives'%}?category=Other&from_date=&to_date=&region= ">
+            <div class="w3-display-container mySlides" >
+                <img class="w3-opacity-min w3-hover-opacity-off" src="{% static 'images/other.png' %}"
+                     alt="Other" style="width:100%">
+            <div class="w3-display-topleft w3-container w3-padding-16 w3-text-white w3-round-large"
+                 style="font-size: 32px">OTHER</div>
+            </div>
+        </a>
+      <div class="w3-center w3-container w3-xlarge w3-text-white w3-display-bottommiddle"
+           style="width:100%; background-color: rgba(0, 0, 0, 0.5); ">
+        <div class="w3-left w3-hover-text-black" onclick="plusDivs(-1)">&#10094;</div>
+        <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(5)"></span>
+      </div>
+    </div>
 </div>
-    <div style="width: 400px; display: inline-block">
-        <form class="w3-container" action="/action_page.php">
-
-  <select class="w3-select w3-text-grey" name="option">
-    <option value="" disabled selected>To date:</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-</form>
+<div class="w3-row w3-padding-large w3-white w3-section">
+    <div class="w3-container w3-center w3-text-dark-grey " style="display: flex; justify-content: center">
+        <p style="width: 80%; font-size: 22px"><b>. . . read some of our inspirational stories . . .</b></p>
+    </div>
+    <div style="display: flex; justify-content: center">
+        <div class="w3-row-padding" style="width: 90%">
+            {% for story in stories %}
+                <div class="w3-col s12 m6 l4">
+                <a class="w3-opacity-min w3-hover-opacity-off" href="{% url 'details story' pk=story.pk %}">
+                    <div class="w3-display-container w3-center w3-border w3-margin w3-card-4">
+                        {% if story.image %}
+                        <img src="{{ story.image }}" style="height: 300px; max-width: 100%">
+                        {% else %}
+                        <img src="https://wp-media.beliefnet.com/sites/370/2020/09/butterfly-effect-beliefnet.jpg" style="height: 300px; max-width: 100%">
+                        {% endif %}
+                        <div class="w3-display-middle w3-container w3-padding w3-text-white w3-round-large"
+                         style="font-size: 22px; background-color: rgba(0, 0, 0, 0.6)">{{ story.title }}
+                        </div>
+                    </div>
+                </a>
+                </div>
+            {% endfor %}
+            <div class="w3-col s12 m6 l4">
+                <a class="w3-opacity-min w3-hover-opacity-off" href="{% url 'all stories' %}">
+                    <div class="w3-display-container w3-center w3-border w3-margin w3-card-4">
+                        <img src="https://wp-media.beliefnet.com/sites/370/2020/09/butterfly-effect-beliefnet.jpg" style="height: 300px; max-width: 100%">
+                       <div class="w3-display-middle w3-container w3-padding w3-text-white w3-round-large"
+                         style="font-size: 22px; background-color: rgba(0, 0, 0, 0.6)">ALL STORIES
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
-      <p><button class="w3-btn w3-btn w3-round-xlarge w3-2017-navy-peony">Filter</button></p>
+<div class="w3-container w3-section">
+    <div class="w3-container w3-center w3-text-dark-grey " style="display: flex; justify-content: center">
+        <p style="width: 80%; font-size: 22px">
+            <b>. . . and become part of our big FAMILY <i class="fa fa-heart w3-text-red" aria-hidden="true"></i></b>
+        </p>
+    </div>
+    <div style="display: flex; justify-content: center">
+        <div class="w3-row-padding w3-text-grey" style="width: 90%; font-size: 32px">
+            <div class="w3-col s12 m6 l3">
+                <div class="w3-display-container w3-center w3-border w3-margin w3-card-4">
+                    <p>Participations: </p>
+                    <p style="font-size: 48px">{{ participants_count }}</p>
+                </div>
+            </div>
+            <div class="w3-col s12 m6 l3">
+                <div class="w3-display-container w3-center w3-border w3-margin w3-card-4">
+                    <p>Initiatives: </p>
+                    <p style="font-size: 48px">{{ initiatives_count }}</p>
+                </div>
+            </div>
+            <div class="w3-col s12 m6 l3">
+                <div class="w3-display-container w3-center w3-border w3-margin w3-card-4">
+                    <p>Stories: </p>
+                    <p style="font-size: 48px">{{ stories_count }}</p>
+                </div>
+            </div>
+            <div class="w3-col s12 m6 l3">
+                <div class="w3-display-container w3-center w3-border w3-margin w3-card-4">
+                    <p>Users: </p>
+                    <p style="font-size: 48px">{{ users_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-    <div class="w3-third w3-margin-bottom w3-display-container" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="{% static 'images/pic_butterfly.png' %}" alt="Initiative image" style="width:100%; max-height: 70%">
-        <div class="w3-container">
-          <h3>Jane Cormick</h3>
-          <p class="w3-opacity">CEO & Founder</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. </p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">DETAILS</a></button></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="{% static '/images/R.jpg' %}" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">DETAILS</a></button></p>
-        </div>
-      </div>
-    </div>
-
-          <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-
-          <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-
-          <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-
-          <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-
-          <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4 w3-center" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1553322378-eb94e5966b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Manuel Meza" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Kristen Arnheim</h3>
-          <p class="w3-opacity">Dog Walker & Trainer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-third w3-margin-bottom" style="width:33%">
-      <div class="w3-card-4" style="height: 600px">
-        <img src="https://images.unsplash.com/photo-1539440860461-f30442bf7ab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Photo by Wieger Stienstra" style="width:100%; max-height: 65%">
-        <div class="w3-container">
-          <h3>Ola Truntwistle</h3>
-          <p class="w3-opacity">Dog Trainer & Hairdresser</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="w3-button w3-round w3-2017-navy-peony w3-block"><a href="#Contact">BOOK NOW</a></button></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 {% endblock %}
