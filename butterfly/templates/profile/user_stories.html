@@ -4,6 +4,7 @@
 {% block content %}
     <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}">Add Story</a>
  <div class="w3-row-padding w3-margin">
+     {% if stories %}
      {% for story in user_stories %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round">
@@ -25,6 +26,15 @@
          </div>
      </div>
      {% endfor %}
+     {% else %}
+         <h2 class="w3-center w3-margin w3-xxlarge">
+             <a href="{% url 'add story' %}" style="text-decoration: none"><i>
+                 <span class="w3-text-cyan">INSPIRE OTHERS</span> by
+                 <span class="w3-text-green"> SHARING YOUR STORY</span></i>
+             </a>
+         </h2>
+     {% endif %}
+
  </div>
     {% if stories.has_other_pages %}
       <div class="w3-center">

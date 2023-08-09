@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="w3-text-dark-grey w3-center"><b>get INVOLVED and CHANGE the FEATURE</b></h1>
+    <h1 class="w3-text-dark-grey w3-center"><b>get <span class="w3-text-cyan">INVOLVED</span> and <span class="w3-text-deep-purple">CHANGE</span> the <span class="w3-text-lime">FEATURE</span></b></h1>
 {% if request.user.is_authenticated %}
     <div style="display: flex; justify-content: center">
     <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" style="width: 96%" href="{% url 'add initiative' %}"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW INITIATIVE</a>
@@ -13,33 +13,43 @@
 <div class="w3-container w3-margin">
     <div class="w3-text-dark-grey w3-display-topmiddle w3-animate-zoom w3-round-large w3-sand"
                  style="display:none;z-index:5;width: 80%; height: auto" id="filterMenu">
-        <button onclick="closeFilterMenu()" class="w3-button w3-large w3-right w3-margin w3-round">Close &times;</button>
+        <button onclick="closeFilterMenu()" class="w3-button w3-large w3-right w3-margin w3-btn w3-round-large">
+            Close &times;</button>
         <div class="w3-container w3-text-dark-grey">
             <h3 class="w3-top w3-center"><b>FILTERS</b></h3>
             <form method="get" class="w3-container">
-                <div class="w3-container w3-margin w3-large" style="display: inline-block">
-                    <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Category: </label>
-                    <p>{{ initiatives_list.form.category }}</p>
-                </div>
-                <div class="w3-container w3-margin w3-large" style="display: inline-block">
-                    <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Suitable for:</label>
-                    <p>{{ initiatives_list.form.suitable_for }}</p>
-                </div>
-                <div class="w3-container w3-margin w3-large" style="display: inline-block">
-                    <p>
-                        <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Start date:</label>
-                        <span class="w3-margin">{{ initiatives_list.form.from_date }}</span>
-                    </p>
-                    <p>
-                    <label class="w3-text-grey w3-large" style="margin-bottom: 30px">End date:</label>
-                    <span class="w3-margin">{{ initiatives_list.form.to_date }}</span>
-                    </p>
-                    <p>
-                       <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Region:</label>
-                       <span class="w3-margin">{{ initiatives_list.form.region }}</span>
-                    </p>
-                </div>
-                <input type="submit" value="Filter" class="w3-button w3-padding w3-btn w3-round-large w3-2017-navy-peony">
+                <div class="w3-large" style="display: flex; justify-content: space-evenly; align-items: center">
+                    <div style="display: inline-block">
+                        <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Category: </label>
+                        <p>{{ initiatives_list.form.category }}</p>
+                    </div>
+                    <div style="display: inline-block">
+                        <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Suitable for:</label>
+                        <p>{{ initiatives_list.form.suitable_for }}</p>
+                    </div>
+                    <div style="display: inline-block">
+                        <p>
+                            <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Start date:</label>
+                            <span class="w3-margin">{{ initiatives_list.form.from_date }}</span>
+                        </p>
+                        <p>
+                            <label class="w3-text-grey w3-large" style="margin-bottom: 30px">End date:</label>
+                            <span class="w3-margin">{{ initiatives_list.form.to_date }}</span>
+                        </p>
+                    </div>
+                        <div style="display: inline-block">
+                        <p>
+                           <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Region:</label>
+                           <span class="w3-margin">{{ initiatives_list.form.region }}</span>
+                        </p>
+                        <p>
+                           <label class="w3-text-grey w3-large" style="margin-bottom: 30px">Status:</label>
+                           <span class="w3-margin">{{ initiatives_list.form.status }}</span>
+                        </p>
+                        </div>
+                    </div>
+                <input type="submit" value="Filter" class="w3-button w3-large w3-right w3-padding w3-margin w3-btn
+                w3-round-large w3-2017-navy-peony">
             </form>
         </div>
     </div>
@@ -56,7 +66,7 @@
 <div class="w3-display-container" style="height: 80px; margin-top: 80px;">
     <div class="w3-display-middle" style="width: 70%">
         <form method="post">
-            {{ search_form.title_filed|form_field_class:'w3-input w3-sand w3-border w3-round'|form_field_styles:'width: 90%' }}
+            {{ search_form.title_filed|form_field_class:'w3-input w3-sand w3-border w3-round'|form_field_styles:'width: 85%' }}
             {% csrf_token %}
             <button type="submit" class="w3-display-right w3-button w3-btn w3-round w3-2017-navy-peony">SUBMIT</button>
         </form>

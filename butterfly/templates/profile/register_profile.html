@@ -8,18 +8,37 @@
     <div class="w3-padding w3-display-middle" style="width: 35%; min-width: 600px; height: 95%">
         <form  action="{% url 'register' %}" method="post" class="w3-center w3-display-container w3-container w3-card-4 w3-light-grey" style="width: 100%; height: 100%">
             <h2 class="w3-text-indigo w3-monospace" style="margin-top: 40px"><b>Register</b></h2>
-            {{ form.first_name.errors }}
-            {{ form.first_name|placeholder:'First Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-top: 50px' }}
-            {{ form.last_name.errors }}
-            {{ form.last_name|placeholder:'Last Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-top: 50px' }}
-            {{ form.email.errors }}
-            {{ form.email|placeholder:'Email'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-top: 50px' }}
-            {{ form.username.errors }}
-            {{ form.username|placeholder:'Username'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-top: 50px' }}
-            {{ form.password1.errors }}
-            {{ form.password1|placeholder:'Password'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-top: 50px' }}
-            {{ form.password2.errors }}
-            {{ form.password2|placeholder:'Repeat the password'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-top: 50px' }}
+            {% if form.first_name.errors %}
+            {% for error in form.first_name.errors %}
+            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+            {{ form.first_name|placeholder:'First Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px; margin-top: 30px' }}
+            {% if form.last_name.errors %}
+            {% for error in form.first_name.errors %}
+            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+            {{ form.last_name|placeholder:'Last Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {% if form.email.errors %}
+            {% for error in form.email.errors %}
+            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+            {{ form.email|placeholder:'Email'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {% if form.username.errors %}
+            {% for error in form.username.errors %}
+            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+            {{ form.username|placeholder:'Username'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {% if form.password.errors %}
+            {% for error in form.password.errors %}
+            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+            {{ form.password1|placeholder:'Password'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {{ form.password2|placeholder:'Repeat the password'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
 
           <input type="hidden" value="{{ next }}" name="next"/>
 

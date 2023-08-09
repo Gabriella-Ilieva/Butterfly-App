@@ -3,20 +3,21 @@
 {% load static %}
 
 {% block content %}
-<div class="w3-display-container" style="height: 2200px">
-    <div class="w3-padding w3-display-middle" style="width: 75%; min-width: 600px; height: 90%">
-        <form  action="{% url 'edit initiative' pk=initiative.pk%}" method="post" class="w3-center w3-display-container w3-container w3-card-4 w3-light-grey" style="width: 100%; height: 100%">
+<div class="w3-display-container" style="height: 2000px">
+    <div class="w3-padding w3-display-middle" style="width: 65%; min-width: 600px; height: 95%">
+        <form  action="{% url 'edit initiative' pk=initiative.pk%}" method="post" class="w3-center w3-display-container w3-container w3-card-4 w3-light-grey" style="width: 100%; height: 100%; font-size: 20px">
             <h2 class="w3-text-indigo w3-monospace" style="margin-top: 40px"><b>Edit your initiative</b></h2>
+            <p class="w3-text-grey w3-monospace" style="margin-top: 40px; font-size: 14px">* Required field</p>
             {{ form.category|placeholder:'What field the initiative will help to?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.title|placeholder:'What should happen?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.description|placeholder:'What is the purpose?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.participation_reason|placeholder:'Why people should participate?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.equipment|placeholder:'Is special equipment needed?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.skills|placeholder:'Are special skills needed?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
+            {{ form.title|placeholder:'What should happen? (Title) *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
+            {{ form.description|placeholder:'What is the purpose? *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%; height: 250px; margin-top: 50px' }}
+            {{ form.participation_reason|placeholder:'Why people should participate? *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%; height: 200px; margin-top: 50px' }}
+            {{ form.equipment|placeholder:'Is special equipment needed? *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
+            {{ form.skills|placeholder:'Are special skills needed? *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.suitable_for|placeholder:'Who is suitable for?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.region|placeholder:'In which region the initiative take place?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.from_date|placeholder:'When the initiative starts?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
-            {{ form.to_date|placeholder:'When the initiative ends?'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
+            {{ form.from_date|placeholder:'When the initiative starts? *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
+            {{ form.to_date|placeholder:'When the initiative ends? *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.image|placeholder:'Show us the desired end (Image URL)'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input w3-xlarge'|form_field_styles:'width: 70%;margin-top: 50px' }}
           <input type="hidden" value="{{ next }}" name="next"/>
 

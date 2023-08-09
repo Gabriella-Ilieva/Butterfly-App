@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="w3-text-dark-grey w3-center"><b>get INSPIRED with our STORIES</b></h1>
+    <h1 class="w3-text-dark-grey w3-center"><b>get <span class="w3-text-cyan">INSPIRED</span> with our <span class="w3-text-deep-purple">STORIES</span></b></h1>
 {% if request.user.is_authenticated %}
-    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}" target="_blank">Add Story</a>
+    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add story' %}">Add Story</a>
 {% endif %}
 <div class="w3-container" style="height: 80px">
     <div class="w3-display-container w3-padding w3-margin">

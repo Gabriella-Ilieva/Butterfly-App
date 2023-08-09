@@ -1,10 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
 from butterfly.accounts.models import ButterflyUser
 from butterfly.initiatives.models import Initiative, Participation
 from butterfly.main.forms import CommentForm
-from butterfly.main.models import Comment
 from butterfly.stories.models import Story
 
 

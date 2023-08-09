@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,63 +12,35 @@
 			margin: 2%;
 			max-width: 620px;">
     <div>
-		<table>
-			<nav>
-                <img src="{% static '/images/pic_butterfly.png' %}"
-                     style="display: inline-block;
-                            width: 15%;
-                            margin-top: 10px;
-                            margin-left: -20px;
-                            height: auto;"
-                     alt="image">
-                <h2 style="display: inline-block;
-                            color: rgb(65, 63, 63);
-                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-                            padding-left: 10px;
-                            padding-top: 30px; ">
-                    <b>BUTTERFLY</b></h2>
-            </nav>
-		</table>
-
-        <h1 style="text-align: center;
-                color: rgb(65, 63, 63);
-                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-
-            Hello, {{ user.username|upper }} !</h1>
-
-        <div style="display: flex;
-                justify-content: center;">
-            <img style="width: 70%;" id="cat-image"
-                 src="https://media2.giphy.com/media/dl2c1a1xHklcJzCmCP/giphy.gif"
-                 alt="gif cat">
+        <div style="display: flex; justify-content: left;">
+            <img style="width: 10rem; height: auto" src="https://i.ibb.co/vswLvSq/logo2.png" alt="logo">
         </div>
-
-        <p style="max-width: 620px;
-            padding: 20px 20px 0 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-            Congratulations on creating your profile at Butterfly!
-        </p>
-        <p style="max-width: 620px;
-            padding: 20px 20px 0 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-            We believe that even tiny changes can lead to <b>HUGE</b> differences.
-        </p>
-        <p style="max-width: 620px;
-            padding: 20px 20px 0 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-            So, spread your wings and wave them in the right direction!
-        </p>
-        <p style="max-width: 620px;
-            padding: 20px 20px 0 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-            Sincerely,
-            <br>
-            <img style="width: 10%;
-            margin-top: 10px;
-            margin-left: -4px;"
-                 src="{% static 'images/pic_butterfly.png' %}"
-                 alt="Logo">
-        </p>
+        {% if user.first_name %}
+        <h1 style="text-align: center; color: rgb(65, 63, 63); font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+            Hello, {{ user.first_name|upper }} !</h1>
+        {% else %}
+        <h1 style="text-align: center; color: rgb(65, 63, 63); font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+            Hello, {{ user.username|upper }} !</h1>
+        {% endif %}
+        <div style="max-width: 620px; text-align: center">
+            <p style="padding: 20px 20px 0 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                Congratulations on creating your profile at Butterfly!
+            </p>
+            <p style="padding: 20px 20px 0 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                We believe that even tiny changes can lead to <b>HUGE</b> differences.
+            </p>
+            <p style="padding: 20px 20px 0 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                So, spread your wings and wave them in the right direction!
+            </p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <img style="width: 50%;"
+                 src="https://media2.giphy.com/media/dl2c1a1xHklcJzCmCP/giphy.gif"
+                 alt="gif butterfly">
+        </div>
     </div>
 </div>
 </body>

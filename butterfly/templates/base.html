@@ -12,86 +12,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
 <style>
-html {
-    scroll-behavior: smooth;
-}
-.quoteSlides {display:none;}
-.mySlides {display:none;}
-.w3-left, .w3-right, .w3-badge {cursor:pointer}
-.w3-badge {height:13px;width:13px;padding:0}
-h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
-body {font-family: "Source Sans Pro"}
+    html {
+        scroll-behavior: smooth;
+    }
+    .quoteSlides {display:none;}
+    .mySlides {display:none;}
+    .w3-left, .w3-right, .w3-badge {cursor:pointer}
+    .w3-badge {height:13px;width:13px;padding:0}
+    h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
+    body {font-family: "Source Sans Pro"}
 </style>
 </head>
 <body class="w3-light-white">
     <div class="w3-bar w3-sand w3-text-dark-grey w3-padding">
-        <a class="w3-left w3-button w3-tag w3-sand w3-round" href="{% url 'index' %}">
-            <img src="{% static '/images/pic_butterfly.png' %}" class="w3-bar-item w3-circle" style="width:85px; padding-right: 0" alt="image">
-            <h3 class="w3-cursive w3-bar-item w3-center" style="padding-left: 10px; padding-top: 30px"><b>BUTTERFLY</b></h3>
+        <a class="w3-left w3-sand w3-round" href="{% url 'index' %}">
+            <img src="{% static '/images/butterfly_logo.png' %}" class="w3-bar-item w3-circle" style="width:200px; padding-right: 0; margin-top: 25px" alt="image">
         </a>
         {% if request.user.is_authenticated %}
-        <div class="w3-sidebar w3-text-dark-grey w3-bar-block w3-card w3-animate-right w3-round w3-sand"
-             style="display:none;z-index:5;right:0; width: 30%; height: 97vh" id="rightMenu">
-            <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-            <div class="w3-card-4 w3-display-container" style="height: 25%; width: 100%">
-                {% if request.user.profile_picture %}
-                <img src="{{ request.user.profile_picture }}" class="w3-display-middle" style="height: 80%; width: auto">
-                {% else %}
-                <img src="{% static 'images/pic_butterfly.png' %}" class="w3-display-middle" style="height: 80%; width: auto">
-                {% endif %}
-            </div>
-        <div class="w3-left w3-margin">
-            <div class="w3-large">
-                {% if request.user.first_name and request.user.last_name %}
-                <p>Name: <b><i>{{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</i></b></p>
-                {% endif %}
-                <p>Username: <b><i>{{ request.user.username }}</i></b></p>
-                <p>E-mail: <b><i>{{ request.user.email }}</i></b></p>
-            </div><br>
-            <div>
-                <a href="{% url 'user initiatives' %}" class="w3-bar-item w3-button w3-large">
-                    <b>MY INITIATIVES</b><span class="w3-badge w3-light-blue w3-text-dark-grey"
-                                               style="margin-left: 20px">{{ initiative_count }}</span></a>
-                <a href="{% url 'user participations' %}" class="w3-bar-item w3-button w3-large">
-                    <b>PARTICIPATIONS</b><span class="w3-badge w3-light-blue w3-text-dark-grey"
-                                               style="margin-left: 20px">{{ participation_count }}</span></a>
-                <a href="{% url 'user stories' %}" class="w3-bar-item w3-button w3-large">
-                    <b>MY STORIES</b><span class="w3-badge w3-light-blue w3-text-dark-grey"
-                                           style="margin-left: 20px">{{ story_count }}</span></a>
-            </div>
-        </div>
-            <div class="w3-display-bottomright">
-                <a href="{% url 'profile edit' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px">
-                    <b>EDIT PROFILE</b>
-                </a>
-                <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px; display: inline-block"><b>LOG OUT</b></a>
-                <a href="{% url 'profile delete' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px">
-                    <b>DELETE PROFILE</b>
-                </a>
-            </div>
-        </div>
-
-        <div>
-        <button class="w3-button w3-large w3-right" onclick="openRightMenu()"
-                style="font-family: 'Source Sans Pro'; margin-top: 40px">
-                {% if request.user.first_name %}
-                <b><i>{{ request.user.first_name|upper }}</i></b>
-                {% else %}
-                <b><i>{{ request.user.username }}</i></b>
-                {% endif %}
-        </button>
-        </div>
-        <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+            {% include 'details_profile.html' %}
         {% else %}
         <a href="{% url 'register' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 40px"><b>REGISTER</b></a>
+           style="margin-top: 55px"><b>REGISTER</b></a>
         <a href="{% url 'login' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 40px"><b>LOG IN</b></a>
+           style="margin-top: 55px"><b>LOG IN</b></a>
         {% endif %}
         <a href="{% url 'all stories' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 40px"><b>OUR STORIES</b></a>
+           style="margin-top: 55px"><b>OUR STORIES</b></a>
         <a href="{% url 'all initiatives' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 40px"><b>INITIATIVES</b></a>
+           style="margin-top: 55px"><b>INITIATIVES</b></a>
     </div>
 
     <div class="w3-container w3-center w3-padding-large">
@@ -139,71 +87,6 @@ body {font-family: "Source Sans Pro"}
         <i class="fa fa-heart-o" aria-hidden="true"></i></p>
 </div>
 </footer>
-<script>
-function openFilterMenu() {
-  document.getElementById("filterMenu").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
-
-function closeFilterMenu() {
-  document.getElementById("filterMenu").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-</script>
-<script>
-function openRightMenu() {
-  document.getElementById("rightMenu").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
-
-function closeRightMenu() {
-  document.getElementById("rightMenu").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-</script>
-<script>
-var slideIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("quoteSlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > x.length) {slideIndex = 1}
-  x[slideIndex-1].style.display = "block";
-  setTimeout(carousel, 15000);
-}
-</script>
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  x[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-white";
-}
-</script>
+<script src="{% static 'scripts/functions.js' %}"></script>
 </body>
 </html>

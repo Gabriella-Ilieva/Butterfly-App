@@ -1,3 +1,5 @@
+from datetime import date
+
 import django_filters
 from django import forms
 
@@ -33,6 +35,27 @@ class InitiativeFilter(django_filters.FilterSet):
         widget=forms.DateInput(
             attrs={'type': 'date'}
         ))
+
+    STATUS_CHOICES = (
+        ('active', 'Active'),
+        ('expired', 'Expired'),
+    )
+
+    status = django_filters.ChoiceFilter(
+        choices=STATUS_CHOICES,
+        method='filter_by_status',
+        label='Status',
+    )
+
+    def filter_by_status(self, queryset, name, value):
+        today = date.today()
+
+        if value == 'active':
+            return queryset.filter(to_date__gte=today)
+        elif value == 'expired':
+            return queryset.filter(to_date__lt=today)
+
+        return queryset
 
     class Meta:
         model = Initiative

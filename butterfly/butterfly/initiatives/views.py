@@ -4,7 +4,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView
-
 from butterfly.initiatives.filters import InitiativeFilter
 from butterfly.initiatives.forms import CreateInitiativeForm, EditInitiativeForm
 from butterfly.initiatives.models import Initiative, Participation
@@ -66,8 +65,6 @@ def edit_initiative(request, pk):
         if form.is_valid():
             form.save()
             return redirect('details initiative', pk=pk)
-        else:
-            print(form.errors)
 
     context = {
         "initiative": initiative,

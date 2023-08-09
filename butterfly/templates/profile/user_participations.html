@@ -2,8 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <a class="w3-button w3-padding w3-btn w3-large w3-round-large w3-blue" style="margin-bottom: 30px; margin-left: 20px" href="{% url 'add initiative' %}">Add Initiative</a>
+<div style="display: flex; justify-content: center">
+    <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" style="width: 96%" href="{% url 'add initiative' %}"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW INITIATIVE</a>
+</div>
  <div class="w3-row-padding">
+     {% if page_obj %}
      {% for row in page_obj %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round">
@@ -42,6 +45,14 @@
          </div>
      </div>
      {% endfor %}
+     {% else %}
+         <h2 class="w3-center w3-margin w3-xxlarge w3-padding">
+             <a href="{% url 'all initiatives' %}" style="text-decoration: none"><i>
+                 <span class="w3-text-cyan">INSPIRE YOURSELF</span> and
+                 <span class="w3-text-green"> CHOOSE INITIATIVE</span></i>
+             </a>
+         </h2>
+     {% endif %}
  </div>
     {% if page_obj.has_other_pages %}
       <div class="w3-center">
