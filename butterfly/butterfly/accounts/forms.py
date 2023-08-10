@@ -34,3 +34,7 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = UserModel
         fields = ['first_name', 'last_name', 'profile_picture', 'email']
+
+
+class PasswordChangeForm(auth_forms.PasswordChangeForm):
+    pass

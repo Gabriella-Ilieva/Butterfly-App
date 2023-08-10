@@ -49,7 +49,7 @@ class CreateInitiativeView(LoginRequiredMixin, CreateView):
         return form
 
 
-class DeleteInitiativeView(LoginRequiredMixin, DeleteView):
+class DeleteInitiativeView(DeleteView):
     model = Initiative
     template_name = 'initiative/delete_initiative.html'
     success_url = reverse_lazy('all initiatives')

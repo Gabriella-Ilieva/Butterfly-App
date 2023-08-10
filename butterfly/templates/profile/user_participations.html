@@ -2,24 +2,24 @@
 {% load static %}
 
 {% block content %}
-<div style="display: flex; justify-content: center">
-    <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" style="width: 96%" href="{% url 'add initiative' %}"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW INITIATIVE</a>
+<h1 class="w3-text-dark-grey w3-center"><b>your <span class="w3-text-cyan">STEPS</span> toward <span class="w3-text-deep-purple">CHANGING</span> the <span class="w3-text-lime">FEATURE</span></b></h1>
+<div class="initiative-btn">
+    <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" href="{% url 'add initiative' %}"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW INITIATIVE</a>
 </div>
- <div class="w3-row-padding">
+ <div class="w3-row-padding w3-margin">
      {% if page_obj %}
      {% for row in page_obj %}
      <div class="w3-col s12 m6 l4">
          <div class="w3-card-4 w3-round">
-             <div class="w3-container w3-center w3-padding">
+             <div class="w3-container w3-center w3-padding image-div">
              {% if row.to_initiative.image %}
-                 <img src="{{ row.to_initiative.image }}" alt="Lights" style="height: 350px; max-width:100%" class="w3-round">
+                 <img src="{{ row.to_initiative.image }}" alt="Lights" class="w3-round">
              {% else %}
-                 <img src="{% static 'images/pic_butterfly.png' %}" alt="Lights" style="height: 350px; max-width:100%"
-                      class="w3-round">
+                 <img src="{% static 'images/pic_butterfly.png' %}" alt="Lights" class="w3-round">
              {% endif %}
              </div>
              <div class="w3-container w3-center w3-text-dark-grey">
-                 <p class="w3-large" style="height: 50px">
+                 <p class="w3-large status-field">
                      {% if initiative.is_expired %}
                      <span class="w3-tag w3-round w3-red w3-margin-right">Expired</span>
                      {% else %}
@@ -39,15 +39,15 @@
                 <p>Participants: <span class="w3-text-dark-grey">{{ initiative.view_count|upper }}</span></p>
             </div>
              <div class="w3-container w3-text-dark-grey">
-                 <p class="w3-large" style="height: 150px">{{ row.to_initiative.description|truncatechars:300}}</p>
+                 <p class="w3-large description-field">{{ row.to_initiative.description|truncatechars:300}}</p>
              </div>
              <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=row.to_initiative.pk %}">More...</a>
          </div>
      </div>
      {% endfor %}
      {% else %}
-         <h2 class="w3-center w3-margin w3-xxlarge w3-padding">
-             <a href="{% url 'all initiatives' %}" style="text-decoration: none"><i>
+         <h2 class="w3-center w3-margin w3-xxlarge w3-padding none-users-initiatives">
+             <a href="{% url 'all initiatives' %}"><i>
                  <span class="w3-text-cyan">INSPIRE YOURSELF</span> and
                  <span class="w3-text-green"> CHOOSE INITIATIVE</span></i>
              </a>

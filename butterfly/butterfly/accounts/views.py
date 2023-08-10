@@ -1,25 +1,14 @@
 from django.contrib.auth import views as auth_views, get_user_model, login
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.views import generic as views
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-
-from butterfly.accounts.forms import RegisterUserForm, LogInForm, EditUserForm
+from butterfly.accounts.forms import RegisterUserForm, LogInForm, EditUserForm, PasswordChangeForm
 from butterfly.initiatives.models import Initiative, Participation
 from butterfly.stories.models import Story
 
 UserModel = get_user_model()
-
-
-# class OnlyAnonymousMixin:
-#     def dispatch(self, request, *args, **kwargs):
-#         if request.user.is_authenticated:
-#             return HttpResponse(self.get_success_url())
-#
-#         return super().dispatch(request, *args, **kwargs)
 
 
 class RegisterUserView(views.CreateView):
@@ -37,25 +26,23 @@ class RegisterUserView(views.CreateView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #
-    #     context['next'] = self.request.GET.get('next', '')
-    #
-    #     return context
-    #
-    # def get_success_url(self):
-    #
-    #     return self.request.POST.get('next', self.success_url)
-
 
 class LoginUserView(auth_views.LoginView):
     form_class = LogInForm
     template_name = 'profile/login.html'
-    success_url = reverse_lazy('index')
 
 
-@login_required
+class ChangePasswordView(auth_views.PasswordChangeView):
+    form_class = PasswordChangeForm
+    model = UserModel
+    template_name = 'profile/change_password.html'
+    success_url = reverse_lazy('change password done')
+
+
+class ChangePasswordDoneView(auth_views.PasswordChangeDoneView):
+    template_name = 'profile/change_password_done.html'
+
+
 def user_stories(request):
     all_stories = Story.objects.filter(user=request.user).order_by('date_of_publication')
     paginator = Paginator(all_stories, per_page=9)
@@ -73,7 +60,6 @@ def user_stories(request):
     return render(request, 'profile/user_stories.html', context)
 
 
-@login_required
 def user_initiatives(request):
     initiatives_list = Initiative.objects.filter(user=request.user).order_by('date_of_publication')
     paginator = Paginator(initiatives_list, per_page=9)
@@ -91,7 +77,6 @@ def user_initiatives(request):
     return render(request, 'profile/user_initiatives.html', context)
 
 
-@login_required
 def user_participations(request):
     participations_list = Participation.objects.filter(user=request.user).order_by('to_initiative__date_of_publication')
 
@@ -110,18 +95,18 @@ def user_participations(request):
     return render(request, 'profile/user_participations.html', context)
 
 
-class LogoutUserView(LoginRequiredMixin, auth_views.LogoutView):
-    success_url = reverse_lazy('index')
+class LogoutUserView(auth_views.LogoutView):
+    pass
 
 
-class ProfileEditView(LoginRequiredMixin, views.UpdateView):
+class ProfileEditView(views.UpdateView):
     template_name = 'profile/edit_profile.html'
     model = UserModel
     form_class = EditUserForm
     success_url = reverse_lazy('index')
 
 
-class ProfileDeleteView(LoginRequiredMixin, views.DeleteView):
+class ProfileDeleteView(views.DeleteView):
     model = UserModel
     template_name = 'profile/delete_profile.html'
     success_url = reverse_lazy('index')

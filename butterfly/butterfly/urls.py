@@ -21,7 +21,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('butterfly.main.urls')),
-    path('account/', include('butterfly.accounts.urls')),
+    path('accounts/', include('butterfly.accounts.urls')),
     path('stories/', include('butterfly.stories.urls')),
     path('initiatives/', include('butterfly.initiatives.urls')),
 ]

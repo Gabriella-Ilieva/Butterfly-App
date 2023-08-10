@@ -1,42 +1,24 @@
 from datetime import date
-
+from enum import Enum
 from django.contrib.auth import get_user_model
 from django.db import models
 
 UserModel = get_user_model()
 
 
-class Initiative(models.Model):
-
+class Groups(Enum):
     KIDS = 'Kids'
     TEENAGERS = 'Teenagers'
     ADULTS = 'Adults'
     ELDERLY = 'Elderly'
     DISABLED_PEOPLE = 'Disabled people'
 
-    GROUPS = (
-        (KIDS, KIDS),
-        (TEENAGERS, TEENAGERS),
-        (ADULTS, ADULTS),
-        (ELDERLY, ELDERLY),
-        (DISABLED_PEOPLE, DISABLED_PEOPLE)
-    )
-
-    ANIMALS = 'Animals'
-    ENVIRONMENT = 'Environment'
-    HEALTHCARE = 'Healthcare'
-    SOCIETY = 'Society'
-    OTHER = 'Other'
-
-    CATEGORIES = (
-        (ANIMALS, ANIMALS),
-        (ENVIRONMENT, ENVIRONMENT),
-        (HEALTHCARE, HEALTHCARE),
-        (SOCIETY, SOCIETY),
-        (OTHER, OTHER),
-    )
+    @classmethod
+    def choices(cls):
+        return [(choice.name, choice.value) for choice in cls]
 
 
+class Regions(Enum):
     BULGARIA = "Bulgaria"
     BLAGOEVGRAD = "Blagoevgrad"
     BURGAS = "Burgas"
@@ -67,37 +49,24 @@ class Initiative(models.Model):
     SHUMEN = "Shumen"
     YAMBOL = "Yambol"
 
-    REGIONS = (
-        (BULGARIA, BULGARIA),
-        (BLAGOEVGRAD, BLAGOEVGRAD),
-        (BURGAS, BURGAS),
-        (VARNA, VARNA),
-        (VELIKO_TARNOVO, VELIKO_TARNOVO),
-        (VIDIN, VIDIN),
-        (VRATSA, VRATSA),
-        (GABROVO, GABROVO),
-        (DOBRICH, DOBRICH),
-        (KARDZHALI, KARDZHALI),
-        (KYUSTENDIL, KYUSTENDIL),
-        (LOVECH, LOVECH),
-        (MONTANA, MONTANA),
-        (PAZARDZHIK, PAZARDZHIK),
-        (PERNIK, PERNIK),
-        (PLEVEN, PLEVEN),
-        (PLOVDIV, PLOVDIV),
-        (RAZGRAD, RAZGRAD),
-        (RUSSE, RUSSE),
-        (SILISTRA, SILISTRA),
-        (SLIVEN, SLIVEN),
-        (SMOLYAN, SMOLYAN),
-        (SOFIA, SOFIA),
-        (SOFIA_OBLAST, SOFIA_OBLAST),
-        (STARA_ZAGORA, STARA_ZAGORA),
-        (TARGOVISHTE, TARGOVISHTE),
-        (HASKOVO, HASKOVO),
-        (SHUMEN, SHUMEN),
-        (YAMBOL, YAMBOL),
-    )
+    @classmethod
+    def choices(cls):
+        return [(choice.name, choice.value) for choice in cls]
+
+
+class Categories(Enum):
+    ANIMALS = 'Animals'
+    ENVIRONMENT = 'Environment'
+    HEALTHCARE = 'Healthcare'
+    SOCIETY = 'Society'
+    OTHER = 'Other'
+
+    @classmethod
+    def choices(cls):
+        return [(choice.name, choice.value) for choice in cls]
+
+
+class Initiative(models.Model):
 
     title = models.CharField(
         max_length=50,
@@ -133,19 +102,19 @@ class Initiative(models.Model):
     )
 
     category = models.CharField(
-        choices=CATEGORIES,
+        choices=Categories.choices(),
         null=False,
         blank=False,
     )
 
     suitable_for = models.CharField(
-        choices=GROUPS,
+        choices=Groups.choices(),
         null=False,
         blank=False,
     )
 
     region = models.CharField(
-        choices=REGIONS,
+        choices=Regions.choices(),
         null=False,
         blank=False,
     )
@@ -164,7 +133,7 @@ class Initiative(models.Model):
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     class Meta:
@@ -184,5 +153,8 @@ class Participation(models.Model):
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
+
+    class Meta:
+        ordering = ('user',)

@@ -1,24 +1,22 @@
 from datetime import date
-
 import django_filters
 from django import forms
-
-from .models import Initiative
+from .models import Initiative, Categories, Groups, Regions
 
 
 class InitiativeFilter(django_filters.FilterSet):
     category = django_filters.MultipleChoiceFilter(
-        choices=Initiative.CATEGORIES,
+        choices=Categories.choices(),
         widget=forms.CheckboxSelectMultiple,
     )
 
     suitable_for = django_filters.MultipleChoiceFilter(
-        choices=Initiative.GROUPS,
+        choices=Groups.choices(),
         widget=forms.CheckboxSelectMultiple,
     )
 
     region = django_filters.ChoiceFilter(
-        choices=Initiative.REGIONS,
+        choices=Regions.choices(),
         widget=forms.Select,
     )
 

@@ -4,53 +4,52 @@
 
 {% block content %}
 
-<div class="w3-display-container" style="height: 850px">
-    <div class="w3-padding w3-display-middle" style="width: 35%; min-width: 600px; height: 95%">
-        <form  action="{% url 'register' %}" method="post" class="w3-center w3-display-container w3-container w3-card-4 w3-light-grey" style="width: 100%; height: 100%">
-            <h2 class="w3-text-indigo w3-monospace" style="margin-top: 40px"><b>Register</b></h2>
+<div class="main-container">
+    <div class="w3-padding inner-div-register">
+        <form  action="{% url 'register' %}" method="post" class="w3-center w3-container w3-card-4 w3-light-grey w3-padding-large">
+            <h2 class="w3-text-indigo"><b>Register</b></h2>
+            <p class="w3-text-grey">* Required field</p>
             {% if form.first_name.errors %}
             {% for error in form.first_name.errors %}
             <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
             {% endfor %}
             {% endif %}
-            {{ form.first_name|placeholder:'First Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px; margin-top: 30px' }}
+            {{ form.first_name|placeholder:'First Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px; margin-top: 30px' }}
             {% if form.last_name.errors %}
             {% for error in form.first_name.errors %}
             <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
             {% endfor %}
             {% endif %}
-            {{ form.last_name|placeholder:'Last Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {{ form.last_name|placeholder:'Last Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
             {% if form.email.errors %}
             {% for error in form.email.errors %}
             <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
             {% endfor %}
             {% endif %}
-            {{ form.email|placeholder:'Email'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {{ form.email|placeholder:'Email *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
             {% if form.username.errors %}
             {% for error in form.username.errors %}
             <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
             {% endfor %}
             {% endif %}
-            {{ form.username|placeholder:'Username'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {{ form.username|placeholder:'Username *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
             {% if form.password.errors %}
             {% for error in form.password.errors %}
             <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
             {% endfor %}
             {% endif %}
-            {{ form.password1|placeholder:'Password'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
-            {{ form.password2|placeholder:'Repeat the password'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 300px;margin-bottom: 50px' }}
+            {{ form.password1|placeholder:'Password *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
+            {{ form.password2|placeholder:'Repeat the password *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
 
-          <input type="hidden" value="{{ next }}" name="next"/>
+            <input type="hidden" value="{{ next }}" name="next"/>
 
             {% csrf_token %}
-
-            <button type="submit" class="w3-padding w3-display-bottommiddle w3-btn w3-round-xlarge w3-2017-navy-peony" style="margin-bottom: 30px">Register</button>
+            <button type="submit" class="w3-button w3-padding w3-btn w3-round-xlarge w3-2017-navy-peony w3-large">Register</button>
         </form>
         <div class="second-option">
             <p class="w3-text-grey">Already have an account? <a href="{% url 'login' %}" class="w3-text-dark-gray">Log In</a></p>
         </div>
     </div>
 </div>
-
 
 {% endblock %}

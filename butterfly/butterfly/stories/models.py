@@ -22,7 +22,7 @@ class Story(models.Model):
     date_of_publication = models.DateField(auto_now=True)
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     class Meta:

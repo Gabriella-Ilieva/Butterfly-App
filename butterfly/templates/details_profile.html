@@ -30,6 +30,7 @@
         </div>
     </div>
     <div class="w3-display-bottomright">
+        <a href="{% url 'change password' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px; display: inline-block"><b>CHANGE PASSWORD</b></a>
         <a href="{% url 'profile edit' pk=request.user.pk %}" class="w3-bar-item w3-button w3-medium" style="padding-left: 20px">
             <b>EDIT PROFILE</b>
         </a>

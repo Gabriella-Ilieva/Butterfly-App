@@ -1,0 +1,172 @@
+html {
+    scroll-behavior: smooth;
+}
+.quoteSlides {
+    display:none;
+}
+.mySlides {
+    display:none;
+}
+.w3-left, .w3-right, .w3-badge #myOverlay{
+    cursor:pointer
+}
+.w3-badge {
+    height:13px;
+    width:13px;
+    padding:0
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Roboto"
+}
+body {
+    font-family: "Source Sans Pro"
+}
+main > .main-container{
+display: flex;
+justify-content: center;
+padding-top: 20px;
+}
+
+.inner-div-login{
+    width: 35%;
+    min-width: 400px;
+    font-size: 18px;
+}
+
+.inner-div-register{
+    width: 50%;
+    min-width: 500px;
+    font-size: 18px;
+}
+
+.inner-div{
+    width: 65%;
+    min-width: 600px;
+    font-size: 20px;
+}
+
+.main-container > h2{
+    margin: 40px;
+}
+
+.main-container p{
+    font-size: 14px;
+}
+
+.main-container button{
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.label-div{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding: 0;
+    width: 100%;
+}
+
+.label-date-div{
+    margin-top: 50px;
+    padding: 0;
+}
+
+.search-div{
+    height: 80px;
+}
+
+.filter-btn-div{
+    margin:10px 10px 80px 10px;
+}
+
+.search-div form{
+    width: 70%;
+}
+
+.main-container label{
+    padding-left: 5px;
+}
+
+.error-message{
+    color: red;
+    font-size: 14px;
+}
+
+.initiative-btn > a{
+    width: 96%;
+}
+
+.initiative-btn{
+    display: flex;
+    justify-content: center
+}
+
+.filter-menu{
+    display:none;
+    z-index:5;
+    width: 80%;
+    height: auto
+}
+
+.filter-div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center
+}
+
+.filter-div > div{
+    display: inline-block;
+}
+
+.filter-div > div > label{
+    margin-bottom: 30px;
+}
+
+.description-field{
+    height: 150px;
+}
+
+.status-field{
+    height: 50px;
+}
+
+.image-div > img{
+    height: 350px;
+    max-width:100%
+}
+
+.story-btn{
+    margin-bottom: 30px;
+    margin-left: 20px
+}
+
+.none-users-initiatives > a{
+    text-decoration: none;
+}
+
+.main-container-delete{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    height: 300px;
+    margin: 50px;
+}
+
+.inner-div-delete > form{
+    width: 35%;
+    min-width: 600px;
+    height: 100%
+}
+
+.inner-div-delete h6{
+    margin-top: 50px;
+}
+
+.change-pass-done{
+    width: 35%;
+    min-width: 600px;
+    height: 60%
+}
+
+.main-container-delete h2{
+    margin: 60px 40px 0 40px;
+}

@@ -11,17 +11,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-    .quoteSlides {display:none;}
-    .mySlides {display:none;}
-    .w3-left, .w3-right, .w3-badge {cursor:pointer}
-    .w3-badge {height:13px;width:13px;padding:0}
-    h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
-    body {font-family: "Source Sans Pro"}
-</style>
+<link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 <body class="w3-light-white">
     <div class="w3-bar w3-sand w3-text-dark-grey w3-padding">
@@ -76,10 +66,11 @@
             </div>
         </div>
     </div>
+<main class="w3-container" style="height: auto">
     {% block content %}
 
     {% endblock %}
-
+</main>
 <footer class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
 <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round">
     <p class="w3-xlarge"><i><b>Change one thing, Change everything!</b></i></p>

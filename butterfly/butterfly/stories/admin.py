@@ -4,4 +4,7 @@ from .models import Story
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title',)
+    list_display = ('title', 'user', 'date_of_publication')
+    list_filter = (('user', admin.RelatedOnlyFieldListFilter),)
+    search_fields = ('title',)
+    search_help_text = 'Search by Story Title'
