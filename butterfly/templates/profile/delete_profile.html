@@ -5,12 +5,12 @@
 <div class="main-container-delete">
     <div class="w3-padding inner-div-delete">
         <form method="post"
-               class="w3-center w3-container w3-display-container w3-card-4 w3-light-grey w3-padding-large">
+               class="w3-center w3-container w3-display-container w3-card-4 w3-light-grey w3-padding-large w3-round-large">
             <h2 class="w3-text-indigo"><b>Are you sure you want to delete your profile?</b></h2>
-            <h7 style="margin-top: 50px" class="w3-text-grey">Please, have in mind that if you delete your profile, all your initiatives will be deleted too!</h7>
+            <h6 class="w3-text-grey">Please, have in mind that if you delete your profile, all your initiatives, stories and participations will be deleted too!</h6>
             {% csrf_token %}
-            <button type="submit" class="w3-button w3-margin w3-display-bottomright w3-padding w3-btn w3-round-xlarge w3-2017-navy-peony">Yes</button>
-            <a class="w3-button w3-padding w3-margin w3-display-bottomleft w3-btn w3-round-xlarge w3-2017-navy-peony" href="{{request.META.HTTP_REFERER|escape}}">Cancel</a>
+            <button type="submit" class="w3-button w3-margin w3-display-bottomright w3-padding w3-btn w3-round-large w3-2017-navy-peony">Yes</button>
+            <a class="w3-button w3-padding w3-margin w3-display-bottomleft w3-btn w3-round-large w3-2017-navy-peony" href="{{request.META.HTTP_REFERER|escape}}">Cancel</a>
         </form>
     </div>
 </div>

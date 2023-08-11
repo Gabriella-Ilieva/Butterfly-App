@@ -30,7 +30,7 @@
                  <p class="w3-large">{{ story.title|upper }}</p>
              </div>
              <div class="w3-container">
-                 <p class="w3-large description-field">{{ story.description|truncatechars:250}}</p>
+                 <p class="w3-large description-field">{{ story.description|truncatechars:220}}</p>
              </div>
              <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details story' pk=story.pk %}">More...</a>
          </div>

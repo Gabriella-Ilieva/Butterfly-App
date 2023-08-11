@@ -12,7 +12,7 @@
             {{ form.last_name|placeholder:'Last Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.email|placeholder:'Email'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-top: 50px' }}
             {{ form.profile_picture|placeholder:'Profile picture URL'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-top: 50px' }}
-
+            {{ form.profile_picture.errors }}
             <input type="hidden" value="{{ next }}" name="next"/>
 
             {% csrf_token %}

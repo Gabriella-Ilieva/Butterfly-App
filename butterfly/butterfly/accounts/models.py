@@ -41,7 +41,6 @@ class ButterflyUser(auth_model.AbstractUser):
     profile_picture = models.URLField(
         null=True,
         blank=True,
-        verbose_name="Profile picture"
     )
 
     @property

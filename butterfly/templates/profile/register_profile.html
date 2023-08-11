@@ -11,31 +11,31 @@
             <p class="w3-text-grey">* Required field</p>
             {% if form.first_name.errors %}
             {% for error in form.first_name.errors %}
-            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            <p class="error-message">{{ error }}</p>
             {% endfor %}
             {% endif %}
             {{ form.first_name|placeholder:'First Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px; margin-top: 30px' }}
             {% if form.last_name.errors %}
             {% for error in form.first_name.errors %}
-            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            <p class="error-message">{{ error }}</p>
             {% endfor %}
             {% endif %}
             {{ form.last_name|placeholder:'Last Name'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
             {% if form.email.errors %}
             {% for error in form.email.errors %}
-            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            <p class="error-message">{{ error }}</p>
             {% endfor %}
             {% endif %}
             {{ form.email|placeholder:'Email *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
             {% if form.username.errors %}
             {% for error in form.username.errors %}
-            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            <p class="error-message">{{ error }}</p>
             {% endfor %}
             {% endif %}
             {{ form.username|placeholder:'Username *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}
             {% if form.password.errors %}
             {% for error in form.password.errors %}
-            <p style="list-style: none; color: red; text-align: left; font-size: 14px">{{ error }}</p>
+            <p class="error-message">{{ error }}</p>
             {% endfor %}
             {% endif %}
             {{ form.password1|placeholder:'Password *'|form_field_class:'w3-input w3-light-grey w3-round w3-animate-input'|form_field_styles:'width: 70%;margin-bottom: 50px' }}

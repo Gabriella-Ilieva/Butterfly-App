@@ -15,67 +15,64 @@
 </head>
 <body class="w3-light-white">
     <div class="w3-bar w3-sand w3-text-dark-grey w3-padding">
-        <a class="w3-left w3-sand w3-round" href="{% url 'index' %}">
-            <img src="{% static '/images/butterfly_logo.png' %}" class="w3-bar-item w3-circle" style="width:200px; padding-right: 0; margin-top: 25px" alt="image">
+        <a class="w3-left w3-sand logo-img" href="{% url 'index' %}">
+            <img src="{% static '/images/butterfly_logo.png' %}" alt="image">
         </a>
         {% if request.user.is_authenticated %}
             {% include 'details_profile.html' %}
         {% else %}
-        <a href="{% url 'register' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 55px"><b>REGISTER</b></a>
-        <a href="{% url 'login' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 55px"><b>LOG IN</b></a>
+        <a href="{% url 'register' %}" class="nav-bar w3-btn w3-round-large w3-mobile w3-large w3-right">
+            <b>REGISTER</b></a>
+        <a href="{% url 'login' %}" class="nav-bar w3-btn w3-round-large w3-mobile w3-large w3-right">
+            <b>LOG IN</b></a>
         {% endif %}
-        <a href="{% url 'all stories' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 55px"><b>OUR STORIES</b></a>
-        <a href="{% url 'all initiatives' %}" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-large w3-right"
-           style="margin-top: 55px"><b>INITIATIVES</b></a>
+        <a href="{% url 'all stories' %}" class="nav-bar w3-btn w3-round-large w3-mobile w3-large w3-right">
+            <b>OUR STORIES</b></a>
+        <a href="{% url 'all initiatives' %}" class="nav-bar w3-btn w3-round-large w3-mobile w3-large w3-right">
+            <b>INITIATIVES</b></a>
     </div>
-
-    <div class="w3-container w3-center w3-padding-large">
-        <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round w3-large" style="height: 180px">
-            <div class="quoteSlides w3-container">
-                <p style="margin: 0">
-                    <span style="font-size:50px">&#10077;</span>
-                    <i><b>You have been created with the ability to change the world. Every single choice you make…
-                        Every single action you take… matters. But remember, the converse is also true.
-                        Every choice you do not make… Every action you do not take… matters just as much. </b></i>
-                </p>
-                <p class="w3-large">
-                    <i><b>– Andy Andrews</b></i>
-                </p>
-            </div>
-            <div class="quoteSlides w3-container">
-                <p style="margin: 0">
-                    <span style="font-size:50px">&#10077;</span>
-                    <i><b>I am a believer of butterfly effect. A small positive vibration can change
-                        the entire cosmos.</b></i>
-                </p>
-                <p class="w3-large">
-                    <i><b>– Amit Ray</b></i>
-                </p>
-            </div>
-            <div class="quoteSlides w3-container">
-                <p style="margin: 0">
-                    <span style="font-size:50px">&#10077;</span>
-                    <i><b>Be the change that you wish to see in the world.</b></i>
-                </p>
-                <p class="w3-large">
-                    <i><b>– Mahatma Gandhi</b></i>
-                </p>
-            </div>
+    <div class="w3-center w3-2017-navy-peony w3-round quoteSection w3-display-container">
+        <div class="quoteSlides">
+            <p>
+                <span>&#10077;</span>
+                <i><b>You have been created with the ability to change the world. Every single choice you make…
+                    Every single action you take… matters. But remember, the converse is also true.
+                    Every choice you do not make… Every action you do not take… matters just as much. </b></i>
+            </p>
+            <p class="w3-display-bottomright w3-padding">
+                <i><b>– Andy Andrews</b></i>
+            </p>
+        </div>
+        <div class="quoteSlides w3-container">
+            <p>
+                <span>&#10077;</span>
+                <i><b>I am a believer of butterfly effect. A small positive vibration can change
+                    the entire cosmos.</b></i>
+            </p>
+            <p  class="w3-display-bottomright w3-padding"class="w3-large">
+                <i><b>– Amit Ray</b></i>
+            </p>
+        </div>
+        <div class="quoteSlides w3-container">
+            <p>
+                <span>&#10077;</span>
+                <i><b>Be the change that you wish to see in the world.</b></i>
+            </p>
+            <p  class="w3-display-bottomright w3-padding">
+                <i><b>– Mahatma Gandhi</b></i>
+            </p>
         </div>
     </div>
-<main class="w3-container" style="height: auto">
+<main>
     {% block content %}
 
     {% endblock %}
 </main>
 <footer class="w3-container w3-center w3-margin-top w3-center w3-padding-large">
 <div class="w3-center w3-padding-large w3-2017-navy-peony w3-round">
-    <p class="w3-xlarge"><i><b>Change one thing, Change everything!</b></i></p>
-    <p style="text-align: right" class="w3-medium"><i class="fa fa-heart" aria-hidden="true"></i> Made with love by GabY
-        <i class="fa fa-heart-o" aria-hidden="true"></i></p>
+    <p class="w3-large"><i><b>Change one thing, Change everything!</b></i></p>
+    <p style="text-align: right" class="w3-medium"><i class="fa fa-heart" aria-hidden="true"></i>
+        Made with love by GabY</p>
 </div>
 </footer>
 <script src="{% static 'scripts/functions.js' %}"></script>

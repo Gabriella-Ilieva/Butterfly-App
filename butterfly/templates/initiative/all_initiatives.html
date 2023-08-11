@@ -3,12 +3,13 @@
 {% load static %}
 
 {% block content %}
+
 <h1 class="w3-text-dark-grey w3-center"><b>get <span class="w3-text-cyan">INVOLVED</span> and <span class="w3-text-deep-purple">CHANGE</span> the <span class="w3-text-lime">FEATURE</span></b></h1>
 <div class="initiative-btn">
     <a class="w3-button w3-padding w3-btn w3-round w3-blue w3-top" href="{% url 'add initiative' %}"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW INITIATIVE</a>
 </div>
-
 <div class="w3-container filter-btn-div">
+    <div class="w3-overlay" onclick="closeFilterMenu()" id="myOverlay"></div>
     <div class="w3-text-dark-grey w3-display-topmiddle w3-animate-top w3-round-large w3-sand filter-menu" id="filterMenu">
         <button onclick="closeFilterMenu()" class="w3-button w3-large w3-right w3-margin w3-btn w3-round-large">
             Close &times;</button>
@@ -57,7 +58,6 @@
            class="w3-button w3-right w3-btn w3-round w3-border w3-border-grey"
            ><i class="fa fa-times" aria-hidden="true"></i> CLEAR FILTERS</a>
     </div>
-    <div class="w3-overlay" onclick="w3_close()" id="myOverlay"></div>
 </div>
 
 <div class="w3-display-container search-div">
@@ -99,7 +99,7 @@
                 <p>Participants: <span class="w3-text-dark-grey">{{ initiative.view_count|upper }}</span></p>
             </div>
              <div class="w3-container w3-text-dark-grey">
-                 <p class="w3-large description-field">{{ initiative.description|truncatechars:300}}</p>
+                 <p class="w3-large description-field">{{ initiative.description|truncatechars:220}}</p>
              </div>
              <a class="w3-button w3-round w3-block w3-large w3-2017-navy-peony w3-margin-bottom" href="{% url 'details initiative' pk=initiative.pk %}"><b>More . . .</b></a>
         </div>
@@ -125,5 +125,4 @@
             </div>
         </div>
     {% endif %}
-
 {% endblock %}

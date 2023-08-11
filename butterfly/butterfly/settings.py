@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'butterfly.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "butterfly_db",
+        "NAME": "butterfly_app",
         "USER": "dbuser",
         "PASSWORD": "dbpass",
         "HOST": "127.0.0.1",
@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
