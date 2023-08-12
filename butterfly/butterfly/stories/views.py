@@ -18,7 +18,7 @@ def show_all_stories(request):
         if search_form.is_valid():
             all_stories = all_stories.filter(title__icontains=search_form.cleaned_data['title_filed'])
 
-    paginator = Paginator(all_stories, per_page=7)
+    paginator = Paginator(all_stories, per_page=6)
     page_number = request.GET.get("page", 1)
     try:
         stories = paginator.page(page_number)

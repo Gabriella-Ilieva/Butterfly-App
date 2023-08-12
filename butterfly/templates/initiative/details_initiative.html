@@ -24,9 +24,9 @@
         </div>
         <div class="filter-div">
             <div class="w3-container w3-left w3-text-grey">
-                <p>Category: <span class="w3-large w3-text-dark-grey">{{ initiative.category|upper }}</span></p>
-                <p>Region: <span class="w3-large w3-text-dark-grey">{{ initiative.region|upper }}</span></p>
-                <p>Suitable for: <span class="w3-large w3-text-dark-grey">{{ initiative.suitable_for|upper }}</span></p>
+                <p>Category: <span class="w3-large w3-text-dark-grey">{{ initiative.get_category_display|upper }}</span></p>
+                <p>Region: <span class="w3-large w3-text-dark-grey">{{ initiative.get_region_display|upper }}</span></p>
+                <p>Suitable for: <span class="w3-large w3-text-dark-grey">{{ initiative.get_suitable_for_display|upper }}</span></p>
             </div>
             <div class="w3-container w3-right w3-text-grey">
                 <p>From: <span class="w3-large w3-text-dark-grey">{{ initiative.from_date|upper }}</span></p>
