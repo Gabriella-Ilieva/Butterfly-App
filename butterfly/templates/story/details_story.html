@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="main-container-edit">
-    <div class="w3-card-4 w3-round inner-div">
+    <div class="w3-card-4 w3-round inner-div w3-padding-bottom">
         <div class="w3-container w3-center image-div">
             {% if story.image %}
                 <img src="{{ story.image }}" alt="Lights" class="w3-round-large w3-margin">
@@ -21,10 +21,10 @@
         </div>
         {% if user.is_authenticated %}
             <div class="w3-padding-large w3-margin">
-                {% if request.user == initiative.user %}
-                    <a class="w3-button w3-left w3-round w3-large w3-2017-navy-peony"
+                {% if request.user == story.user %}
+                    <a class="w3-button w3-margin w3-left w3-round w3-large w3-2017-navy-peony"
                        href="{% url 'edit story' pk=story.pk %}">Edit story</a>
-                    <a class="w3-button w3-right w3-round w3-large w3-2017-navy-peony"
+                    <a class="w3-button w3-margin w3-right w3-round w3-large w3-2017-navy-peony"
                        href="{% url 'delete story' pk=story.pk %}">Delete story</a>
                 {% endif %}
             </div>

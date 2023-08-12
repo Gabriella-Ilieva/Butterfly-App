@@ -9,7 +9,7 @@ class Story(models.Model):
     title = models.CharField(
         null=False,
         blank=False,
-        max_length=50,
+        max_length=100,
     )
     description = models.TextField(
         null=False,
